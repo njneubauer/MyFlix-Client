@@ -22907,32 +22907,40 @@ class MainView extends _reactDefault.default.Component {
                 {
                     _id: 1,
                     Title: 'Inception',
-                    Description: 'desc1...',
-                    ImagePath: '...'
+                    Description: 'Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: "inception", the implantation of another person\'s idea into a target\'s subconscious.',
+                    ImagePath: 'https://img.reelgood.com/content/movie/2208ea58-f84f-48ed-b387-13dd836dc446/poster-780.jpg'
                 },
                 {
                     _id: 2,
                     Title: 'The Shawshank Redemption',
-                    Description: 'desc2...',
-                    ImagePath: '...'
+                    Description: 'Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.',
+                    ImagePath: 'https://img.reelgood.com/content/movie/900bc451-e61f-48db-96c7-32b6635a3f75/poster-780.jpg'
                 },
                 {
                     _id: 3,
                     Title: 'Gladiator',
-                    Description: 'desc3...',
-                    ImagePath: '...'
+                    Description: 'In the year 180, the death of emperor Marcus Aurelius throws the Roman Empire into chaos. Maximus is one of the Roman army\'s most capable and trusted generals and a key advisor to the emperor.  As Marcus\' devious son Commodus ascends to the throne, Maximus is set to be executed.  He escapes, but is captured by slave traders.  Renamed Spaniard and forced to become a gladiator, Maximus must battle to the death with other men for the amusement of paying audiences.',
+                    ImagePath: 'https://img.reelgood.com/content/movie/64d0c89f-ecd0-4d7f-9ab6-5aad88b3b17a/poster-780.jpg'
                 }
             ],
             selectedMovie: null
         };
     }
+    setSelectedMovie(newSelectedMovie1) {
+        this.setState({
+            selectedMovie: newSelectedMovie1
+        });
+    }
     render() {
         const { movies , selectedMovie  } = this.state;
         if (selectedMovie) return(/*#__PURE__*/ _jsxRuntime.jsx(_movieViewJsx.MovieView, {
             movie: selectedMovie,
+            onBackClick: (newSelectedMovie)=>{
+                this.setSelectedMovie(newSelectedMovie);
+            },
             __source: {
                 fileName: "src/Components/main-view/main-view.jsx",
-                lineNumber: 23,
+                lineNumber: 27,
                 columnNumber: 35
             },
             __self: this
@@ -22941,7 +22949,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/Components/main-view/main-view.jsx",
-                lineNumber: 25,
+                lineNumber: 29,
                 columnNumber: 41
             },
             __self: this,
@@ -22951,18 +22959,18 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/Components/main-view/main-view.jsx",
-                lineNumber: 28,
+                lineNumber: 32,
                 columnNumber: 13
             },
             __self: this,
             children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCardJsx.MovieCard, {
-                    movie: movie,
-                    onClick: ()=>{
-                        this.state.selectedMovie = movie;
+                    movieData: movie,
+                    onMovieClick: (newSelectedMovie)=>{
+                        this.setSelectedMovie(newSelectedMovie);
                     },
                     __source: {
                         fileName: "src/Components/main-view/main-view.jsx",
-                        lineNumber: 29,
+                        lineNumber: 33,
                         columnNumber: 38
                     },
                     __self: this
@@ -22993,19 +23001,19 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movie  } = this.props;
+        const { movieData , onMovieClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "movie-card",
             onClick: ()=>{
-                this.state.selectedMovie = movie;
+                onMovieClick(movieData);
             },
             __source: {
                 fileName: "src/Components/movie-card/movie-card.jsx",
-                lineNumber: 6,
+                lineNumber: 7,
                 columnNumber: 16
             },
             __self: this,
-            children: movie.Title
+            children: movieData.Title
         }));
     }
 }
@@ -23031,7 +23039,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieView extends _reactDefault.default.Component {
     render() {
-        const { movie  } = this.props;
+        const { movie , onBackClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
             className: "movie-view",
             __source: {
@@ -23120,6 +23128,18 @@ class MovieView extends _reactDefault.default.Component {
                             children: movie.Description
                         })
                     ]
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx("button", {
+                    onClick: ()=>{
+                        onBackClick(null);
+                    },
+                    __source: {
+                        fileName: "src/Components/movie-view/movie-view.jsx",
+                        lineNumber: 20,
+                        columnNumber: 17
+                    },
+                    __self: this,
+                    children: "Back"
                 })
             ]
         }));
