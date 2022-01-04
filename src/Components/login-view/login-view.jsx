@@ -1,5 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import './login-view.scss'
 import propTypes from "prop-types";
 
 export function LoginView(props) {
@@ -17,17 +18,35 @@ export function LoginView(props) {
     };
 
     return (
-        <form >
-            <label>
-                Username:
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            </label>
-            <label>
-                Password:
-                <input type="text" value={password} onChange={e => setPassword(e.target.value)} />
-            </label>
-            <button type="submit" onClick={handleSubmit}>Login</button>
-            <button type="submit" onClick={ ()=>{props.onSignUp(true);} }>Sign Up!</button>
-        </form>
+        <div className="background-wrapper">
+            <div className="background-overlay">
+                <header class="header-container">
+                    <h1>Nickflix</h1>
+                </header>
+                <div className="form-card">
+                    <div className="form-container">
+                        <Form>
+                            <Form.Group>
+                            <Form.Label>
+                                Username
+                                <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                            </Form.Label><br />
+                            <Form.Label>
+                                Password
+                                <Form.Control type="text" value={password} onChange={e => setPassword(e.target.value)} />
+                            </Form.Label>
+                            </Form.Group>
+                            <Button type="submit" className="btn-login" variant="primary" onClick={handleSubmit}>Sign In</Button>
+                            <Button type="submit" className="btn-login" variant="outline-light" onClick={ ()=>{props.onSignUp(true);} }>Create Account</Button>
+                        </Form>
+                    </div>
+                </div>
+                <footer>
+                    <p>
+                        background Image Credit: &nbsp; <a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a>
+                    </p>
+                </footer>
+            </div>
+        </div>
     );
 }

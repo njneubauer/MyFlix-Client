@@ -1,5 +1,12 @@
-.my-flix {
-  color: steelblue;
+header {
+  margin: 0;
+  background: none;
+  height: 100px;
+  width: 100%;
+}
+
+.app-container {
+  margin: 0;
 }
 
 .movie-card {
@@ -17,5 +24,92 @@ img {
 
 div {
   margin: 12px 0px 12px 0px;
+}
+.background-wrapper {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("movie_wallpaper.f9d9f6d1.jpg");
+}
+
+.background-overlay {
+  background-color: rgba(0, 0, 0, 0.548);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  margin: 0;
+  color: white;
+  font-family: "Shizuru", cursive;
+}
+
+header h1 {
+  margin: 0 0 0 25px;
+  font-size: 5em;
+}
+
+.form-card {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15%;
+  height: auto;
+  width: 100%;
+}
+
+.form-container {
+  background: rgba(0, 0, 0, 0.753);
+  color: white;
+  margin: 0;
+  padding: 50px 60px;
+  width: 370px;
+  height: 500px;
+  font-size: 1.2em;
+}
+
+.form-control {
+  background: #272727 !important;
+  color: white !important;
+  border-color: #444444 !important;
+  width: 110% !important;
+}
+
+.form-control:focus {
+  border-color: white !important;
+  box-shadow: none !important;
+}
+
+.btn-login {
+  display: block;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+footer {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 200px;
+  color: #888888;
+  background: rgba(0, 0, 0, 0.753);
+}
+
+footer p {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+.form-container {
+  padding: 35px 60px;
+}
+
+.btn-registration {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  margin-right: 15px;
 }
 /*# sourceMappingURL=index.1f6edfee.css.map */

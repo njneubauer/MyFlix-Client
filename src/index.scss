@@ -1,7 +1,14 @@
-$color: steelblue;
+$color: rgb(21, 53, 78);
 
-.my-flix {
-    color: $color;
+header {
+    margin: 0;
+    background: none;
+    height: 100px;
+    width: 100%;
+}
+
+.app-container {
+    margin: 0;
 }
 
 .movie-card {

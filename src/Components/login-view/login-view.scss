@@ -1,0 +1,81 @@
+$background-shader: rgba(0, 0, 0, 0.548);
+$card-shader: rgba(0, 0, 0, 0.753);
+$footer-text: rgb(136, 136, 136);
+
+.background-wrapper {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../images/movie_wallpaper.jpg');
+}
+
+.background-overlay{
+    background-color: $background-shader;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    margin: 0;
+    color: white;
+    font-family: 'Shizuru', cursive;
+}
+
+header h1 {
+    margin: 0 0 0 25px;
+    font-size: 5em;
+}
+
+.form-card {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15%;
+    height: auto;
+    width: 100%;
+}
+
+.form-container {
+    background: $card-shader;
+    color: white;
+    margin: 0;
+    padding: 50px 60px;
+    width: 370px;
+    height: 500px;
+    font-size: 1.2em;
+}
+
+.form-control {
+    background: rgb(39, 39, 39) !important;
+    color: white !important;
+    border-color: rgb(68, 68, 68) !important;
+    width: 110% !important;
+}
+
+.form-control:focus {
+    border-color: white !important;
+    box-shadow: none !important;
+}
+
+.btn-login {
+    display: block;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+footer {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 200px;
+    color: $footer-text;
+    background: $card-shader;   
+}
+
+footer p {
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
