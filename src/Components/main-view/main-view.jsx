@@ -62,3 +62,5 @@ export class MainView extends React.Component {
         );
     }
 }
+
+// Not recieving props. Using state.

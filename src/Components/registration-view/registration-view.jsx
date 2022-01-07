@@ -34,3 +34,7 @@ export function RegistrationView(props){
         </form>
     );
 }
+
+RegistrationView.propTypes = {
+    onSignUp: propTypes.func.isRequired
+}

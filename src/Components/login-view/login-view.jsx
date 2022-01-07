@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import propTypes from "prop-types";
 
@@ -30,4 +29,10 @@ export function LoginView(props) {
             <button type="submit" onClick={ ()=>{props.onSignUp(true);} }>Sign Up!</button>
         </form>
     );
+}
+
+LoginView.propTypes = {
+    onSignUp: propTypes.func.isRequired,
+    // will be removed once auth built in.
+    onLoggedIn: propTypes.func.isRequired    
 }
