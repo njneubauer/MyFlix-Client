@@ -1,35 +1,121 @@
-header {
-  margin: 0;
-  background: none;
-  height: 100px;
-  width: 100%;
-}
-
 .app-container {
   margin: 0;
-}
-
-.movie-card {
-  cursor: pointer;
-}
-
-.movie-card:hover {
-  color: green;
-}
-
-img {
-  height: auto;
-  width: 300px;
 }
 
 div {
   margin: 12px 0px 12px 0px;
 }
+.movie-card {
+  cursor: pointer;
+}
+
+.card {
+  border: none !important;
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+
+.card-body {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.card-title {
+  padding-bottom: 10px;
+  font-size: 14pt !important;
+}
+html {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, black, #3d3d3d);
+}
+
+.bg {
+  margin: 0;
+  background: linear-gradient(180deg, black, #3d3d3d);
+  min-height: 100vh;
+}
+
+nav {
+  background: black;
+  position: sticky !important;
+  top: 0;
+  z-index: 1;
+}
+
+.main-view-container {
+  margin: 0;
+}
+
+.main-view {
+  margin: 0;
+  color: white;
+}
+
+img {
+  display: block;
+  width: 340px;
+  height: auto;
+}
+
+.movie-view-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.label {
+  font-style: italic;
+}
+
+.movie-img-btn {
+  width: 340px;
+  margin-top: 10px;
+}
+
+.item-1 {
+  margin: 0 30px;
+}
+
+.item-2 {
+  text-align: left;
+  width: 400px;
+  height: auto;
+  margin: 0 30px;
+}
+
+.item-2 h1 {
+  font-size: 18pt !important;
+}
+
+.item-2 h2 {
+  font-size: 14;
+}
+
+.movie-view-container-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.movie-view-container-2 h1 {
+  text-align: center !important;
+}
+
+.item-3 {
+  align-self: flex-end;
+  text-align: left;
+  width: 800px;
+}
 .background-wrapper {
+  background-image: url("movie_wallpaper.f9d9f6d1.jpg");
   margin: 0;
   width: 100%;
   height: 100%;
-  background-image: url("movie_wallpaper.f9d9f6d1.jpg");
 }
 
 .background-overlay {
@@ -41,14 +127,16 @@ div {
 }
 
 header {
-  margin: 0;
   color: white;
   font-family: "Shizuru", cursive;
+  margin: 0;
+  height: 84px;
+  width: 100%;
 }
 
 header h1 {
   margin: 0 0 0 25px;
-  font-size: 5em;
+  font-size: 4em;
 }
 
 .form-card {
@@ -71,8 +159,8 @@ header h1 {
 
 .form-control {
   background: #272727 !important;
-  color: white !important;
   border-color: #444444 !important;
+  color: white !important;
   width: 110% !important;
 }
 
@@ -103,7 +191,7 @@ footer p {
   padding-top: 5px;
 }
 .form-container {
-  padding: 35px 60px;
+  padding: 30px 60px;
 }
 
 .btn-registration {
@@ -112,4 +200,5 @@ footer p {
   margin-top: 15px;
   margin-right: 15px;
 }
+
 /*# sourceMappingURL=index.1f6edfee.css.map */

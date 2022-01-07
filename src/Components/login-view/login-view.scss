@@ -1,12 +1,17 @@
 $background-shader: rgba(0, 0, 0, 0.548);
 $card-shader: rgba(0, 0, 0, 0.753);
+$header-text: white;
+$form-text: white;
+$form-control-bg: rgb(39, 39, 39);
+$form-control-border: rgb(68, 68, 68);
+$form-control-focus-border: white;
 $footer-text: rgb(136, 136, 136);
 
 .background-wrapper {
+    background-image: url('../../images/movie_wallpaper.jpg');
     margin: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../../images/movie_wallpaper.jpg');
 }
 
 .background-overlay{
@@ -18,14 +23,16 @@ $footer-text: rgb(136, 136, 136);
 }
 
 header {
-    margin: 0;
-    color: white;
+    color: $header-text;
     font-family: 'Shizuru', cursive;
+    margin: 0;
+    height: 84px;
+    width: 100%;
 }
 
 header h1 {
     margin: 0 0 0 25px;
-    font-size: 5em;
+    font-size: 4em;
 }
 
 .form-card {
@@ -38,7 +45,7 @@ header h1 {
 
 .form-container {
     background: $card-shader;
-    color: white;
+    color: $form-text;
     margin: 0;
     padding: 50px 60px;
     width: 370px;
@@ -47,14 +54,14 @@ header h1 {
 }
 
 .form-control {
-    background: rgb(39, 39, 39) !important;
-    color: white !important;
-    border-color: rgb(68, 68, 68) !important;
+    background: $form-control-bg !important;
+    border-color: $form-control-border !important;
+    color: $form-text !important;
     width: 110% !important;
 }
 
 .form-control:focus {
-    border-color: white !important;
+    border-color: $form-control-focus-border !important;
     box-shadow: none !important;
 }
 

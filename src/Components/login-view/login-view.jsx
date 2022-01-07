@@ -20,7 +20,7 @@ export function LoginView(props) {
     return (
         <div className="background-wrapper">
             <div className="background-overlay">
-                <header class="header-container">
+                <header className="header-container">
                     <h1>Nickflix</h1>
                 </header>
                 <div className="form-card">
@@ -33,7 +33,7 @@ export function LoginView(props) {
                             </Form.Label><br />
                             <Form.Label>
                                 Password
-                                <Form.Control type="text" value={password} onChange={e => setPassword(e.target.value)} />
+                                <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
                             </Form.Label>
                             </Form.Group>
                             <Button type="submit" className="btn-login" variant="primary" onClick={handleSubmit}>Sign In</Button>
