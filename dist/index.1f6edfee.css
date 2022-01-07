@@ -109,7 +109,18 @@ img {
 .item-3 {
   align-self: flex-end;
   text-align: left;
-  width: 800px;
+  width: 600px;
+  margin: 0 10px;
+}
+
+#bottom-btn {
+  display: none;
+}
+
+@media only screen and (max-width: 883px) {
+  #bottom-btn {
+    display: block;
+  }
 }
 .background-wrapper {
   background-image: url("movie_wallpaper.f9d9f6d1.jpg");

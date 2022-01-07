@@ -43,7 +43,7 @@ export function LoginView(props) {
                 </div>
                 <footer>
                     <p>
-                        background Image Credit: &nbsp; <a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a>
+                        Background Image Credit: &nbsp; <a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a>
                     </p>
                 </footer>
             </div>

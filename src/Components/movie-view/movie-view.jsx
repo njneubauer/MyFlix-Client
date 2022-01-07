@@ -48,7 +48,7 @@ export class MovieView extends React.Component {
                             {directorInfo}
                         </div>
                     </div>
-                <Button style={{ width: "300px" }} className="primary" onClick={ ()=>{ onBackClick(null); }}>Back</Button>
+                <Button id="bottom-btn" style={{ width: "300px" }} className="primary bottom" onClick={ ()=>{ onBackClick(null); }}>Back</Button>
             </div>
 
         )

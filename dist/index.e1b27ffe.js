@@ -959,7 +959,7 @@ class MyFlixApplication extends _reactDefault.default.Component {
             __source: {
                 fileName: "src/index.jsx",
                 lineNumber: 12,
-                columnNumber: 13
+                columnNumber: 17
             },
             __self: this
         }));
@@ -24430,10 +24430,11 @@ class MovieView extends _reactDefault.default.Component {
                     })
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                    id: "bottom-btn",
                     style: {
                         width: "300px"
                     },
-                    className: "primary",
+                    className: "primary bottom",
                     onClick: ()=>{
                         onBackClick(null);
                     },
@@ -24776,7 +24777,7 @@ function LoginView(props) {
                         },
                         __self: this,
                         children: [
-                            "background Image Credit: \xa0 ",
+                            "Background Image Credit: \xa0 ",
                             /*#__PURE__*/ _jsxRuntime.jsx("a", {
                                 href: "https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE",
                                 __source: {
@@ -36461,7 +36462,7 @@ function RegistrationView(props) {
                         },
                         __self: this,
                         children: [
-                            "background Image Credit: \xa0 ",
+                            "Background Image Credit: \xa0 ",
                             /*#__PURE__*/ _jsxRuntime.jsx("a", {
                                 href: "https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE",
                                 __source: {
