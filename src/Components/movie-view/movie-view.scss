@@ -1,5 +1,6 @@
 $header-text: white;
 $background-color: linear-gradient(180deg, black, rgb(61, 61, 61));
+$header-bg: rgb(0,0,0);
 
 html {
     margin: 0;
@@ -10,18 +11,25 @@ html {
 .bg {
     margin: 0;
     background: $background-color;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     min-height: 100vh;
 }
 
-nav {
-    background: rgba(0, 0, 0);
-    position: sticky !important;
-    top: 0;
-    z-index: 1;
+header#main-view {
+    background: $header-bg !important;
 }
 
-.main-view-container {
-    margin: 0;
+nav h1 {
+    display: inline-flex;
+}
+
+.nav-items {
+    display: inline-flex;
+    float: right;
+    margin: 25px 25px;
+    list-style-type: none;
+
 }
 
 .main-view {
@@ -40,6 +48,7 @@ img {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 0;
 }
 
 .label {

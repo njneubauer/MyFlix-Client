@@ -7,15 +7,16 @@ import propTypes from "prop-types";
 export class MovieView extends React.Component {
     render() {
         const { movie, onBackClick } = this.props;
-        const genres = movie.genreNames.map((genre)=><li>{genre.name}&nbsp;</li>);
+        const genres = movie.genreNames.map((genre)=><li key={genre.name}>{genre.name}&nbsp;</li>);
         const directorInfo = movie.directorInfo.map(function(d){
            return (
                <div className="director-info"> 
-                    <h2>{d.name}</h2>
-                    <p>{d.bio}</p>
+                    <h2 key={d.name}>{d.name}</h2>
+                    <p key={d.bio}>{d.bio}</p>
                 </div>
             )
          });
+
         return (
             <div>
                 <div className="movie-view-container">
@@ -54,3 +55,14 @@ export class MovieView extends React.Component {
         )
     }
 }
+
+MovieView.propTypes = {
+    movie: propTypes.shape({
+        title: propTypes.string.isRequired,
+        plot: propTypes.string.isRequired,
+        imageUrl: propTypes.string.isRequired,
+        directorInfo: propTypes.array.isRequired,
+        genreNames: propTypes.array.isRequired
+    }).isRequired,
+    onBackClick: propTypes.func.isRequired
+};

@@ -1,20 +1,55 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import './login-view.scss'
 import propTypes from "prop-types";
+
 
 export function LoginView(props) {
 
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ usernameErr, setUsernameErr ] = useState('');
+    const [ passwordErr, setPasswordErr ] = useState('');
+
+    const validate = ()=>{
+        let isReq = true;
+        if(!username){
+            setUsernameErr('Username required')
+            isReq = false;
+        }
+        else if(username.length < 5){
+            setUsernameErr('Username must be at least 5 characters long');
+            isReq = false
+        }
+        if(!password){
+            setPasswordErr('Password required')
+            isReq = false;
+        }
+        else if(password.length < 5){
+            setPasswordErr('Password must be at least 5 characters long');
+            isReq = false
+        }
+        return isReq;
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(username, password);
-        /* Send a request to the server for authentication */
-        // axios.post(`https://nickflixapi.herokuapp.com/login?username=${username}&password=${password}`)
-        /* then call props.onLoggedIn(username) */
-        props.onLoggedIn(username);
+        const isReq = validate();
+
+        if(isReq){
+            /* Send a request to the server for authentication */
+            axios.post('https://nickflixapi.herokuapp.com/login?username=${username}&password=${password}', {
+                username: username,
+                password: password
+            }).then(response=>{
+                const data = response.data;
+                props.onLoggedIn(data);
+            }).catch(err=>{
+                console.log('no such user');
+            });
+        }
     };
 
     return (
@@ -26,14 +61,17 @@ export function LoginView(props) {
                 <div className="form-card">
                     <div className="form-container">
                         <Form>
+                            <Form.Label className="form-title">Sign In</Form.Label>
                             <Form.Group>
                             <Form.Label>
                                 Username
-                                <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                                <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />    
+                                {usernameErr && <p className="validation-err-text">{usernameErr}</p>}
                             </Form.Label><br />
                             <Form.Label>
                                 Password
                                 <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                                {passwordErr && <p className="validation-err-text">{passwordErr}</p>}
                             </Form.Label>
                             </Form.Group>
                             <Button type="submit" className="btn-login" variant="primary" onClick={handleSubmit}>Sign In</Button>
@@ -42,11 +80,18 @@ export function LoginView(props) {
                     </div>
                 </div>
                 <footer>
-                    <p>
-                        Background Image Credit: &nbsp; <a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a>
-                    </p>
+                    <div className="footer-container">
+                        <p>Background Image Credit:&nbsp;<a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a></p>
+                        <p>&copy;Neubauer Development</p>
+                    </div>
                 </footer>
             </div>
         </div>
     );
+}
+
+LoginView.propTypes = {
+    onSignUp: propTypes.func.isRequired,
+    // will be removed once auth built in.
+    onLoggedIn: propTypes.func.isRequired    
 }

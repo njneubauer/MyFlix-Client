@@ -1,7 +1,16 @@
 $background-shader: rgba(0, 0, 0, 0.548);
+$card-shader: rgba(0, 0, 0, 0.753);
+$form-text: white;
 
-.form-container {
-    padding: 30px 60px;
+.form-container-registration {
+    background: $card-shader;
+    color: $form-text;
+    padding: 30px 60px 50px 60px;
+    width: 370px;
+    min-height: 625px;
+    max-height: 750px;
+    font-size: 1.2em;
+    margin: 0;
 }
 
 .btn-registration {

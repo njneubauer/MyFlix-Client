@@ -12,12 +12,10 @@ export class MovieCard extends React.Component {
         };
 
         return (
-            <div className="movie-card-bg">
-                <div className="movie-card" onClick={()=>{ onMovieClick(movieData); }}>
-                    <Card style={{ width: '14rem' }}>
-                        <Card.Img className="img-responsive" variant="top" src={movieData.imageUrl} />
-                    </Card>
-                </div>
+            <div className="movie-card" onClick={()=>{ onMovieClick(movieData); }}>
+                <Card style={{ width: '14rem' }}>
+                    <Card.Img className="img-responsive" variant="top" src={movieData.imageUrl} />
+                </Card>
             </div>
         );
     }
@@ -25,9 +23,7 @@ export class MovieCard extends React.Component {
 
 MovieCard.propTypes = {
     movieData: propTypes.shape({
-        title: propTypes.string.isRequired,
-        plot: propTypes.string.isRequired,
-        imageUrl: propTypes.string.isRequired
+        imageUrl: propTypes.string.isRequired,
     }).isRequired,
     onMovieClick: propTypes.func.isRequired
 };

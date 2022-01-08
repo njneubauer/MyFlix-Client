@@ -8,7 +8,9 @@ $form-control-focus-border: white;
 $footer-text: rgb(136, 136, 136);
 
 .background-wrapper {
+    position: absolute;
     background-image: url('../../images/movie_wallpaper.jpg');
+    background-attachment: fixed;
     margin: 0;
     width: 100%;
     height: 100%;
@@ -23,34 +25,45 @@ $footer-text: rgb(136, 136, 136);
 }
 
 header {
+    background: rgba(0, 0, 0, 0) !important;
+    position: sticky !important;
+    top: 0;
+    z-index: 1;
     color: $header-text;
-    font-family: 'Shizuru', cursive;
-    margin: 0;
-    height: 84px;
+    margin: 0px;
+    height: 85px;
     width: 100%;
+    border: 3px solid rgb(0,0,0,0);
 }
 
 header h1 {
-    margin: 0 0 0 25px;
-    font-size: 4em;
+    margin: 5px 0 0 25px;
+    font-size: 55px;
+    font-family: 'Shizuru', cursive;
 }
 
 .form-card {
     display: flex;
     justify-content: center;
-    margin-bottom: 15%;
     height: auto;
     width: 100%;
+    margin-bottom: 5%;
 }
 
 .form-container {
     background: $card-shader;
     color: $form-text;
     margin: 0;
-    padding: 50px 60px;
+    padding: 30px 60px;
     width: 370px;
-    height: 500px;
+    min-height: 500px;
+    max-height: 700px;
     font-size: 1.2em;
+}
+
+.form-title{
+    font-size: 40px;
+    font-weight: bold;
 }
 
 .form-control {
@@ -58,6 +71,12 @@ header h1 {
     border-color: $form-control-border !important;
     color: $form-text !important;
     width: 110% !important;
+}
+
+.validation-err-text {
+    margin: 0px;
+    color: grey;
+    font-size: 18px;
 }
 
 .form-control:focus {
@@ -72,17 +91,15 @@ header h1 {
 }
 
 footer {
-    display: block;
-    margin: 0;
-    padding: 0;
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    height: 200px;
+    height: 100px;
     color: $footer-text;
     background: $card-shader;   
 }
 
 footer p {
-    display: flex;
-    justify-content: center;
+    text-align: center;
     padding-top: 5px;
 }
