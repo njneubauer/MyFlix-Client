@@ -13,7 +13,6 @@ export function LoginView(props) {
         console.log(username, password);
         /* Send a request to the server for authentication */
         // axios.post(`https://nickflixapi.herokuapp.com/login?username=${username}&password=${password}`)
-        /* then call props.onLoggedIn(username) */
         props.onLoggedIn(username);
     };
 
@@ -49,4 +48,10 @@ export function LoginView(props) {
             </div>
         </div>
     );
+}
+
+LoginView.propTypes = {
+    onSignUp: propTypes.func.isRequired,
+    // will be removed once auth built in.
+    onLoggedIn: propTypes.func.isRequired    
 }

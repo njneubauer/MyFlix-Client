@@ -54,3 +54,14 @@ export class MovieView extends React.Component {
         )
     }
 }
+
+MovieView.propTypes = {
+    movie: propTypes.shape({
+        title: propTypes.string.isRequired,
+        plot: propTypes.string.isRequired,
+        imageUrl: propTypes.string.isRequired,
+        directorInfo: propTypes.array.isRequired,
+        genreNames: propTypes.array.isRequired
+    }).isRequired,
+    onBackClick: propTypes.func.isRequired
+};

@@ -52,3 +52,7 @@ export function RegistrationView(props){
         </div>
     );
 }
+
+RegistrationView.propTypes = {
+    onSignUp: propTypes.func.isRequired
+}

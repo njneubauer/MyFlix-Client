@@ -22,7 +22,7 @@ export class MainView extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidUpdate(){
         axios.get('https://nickflixapi.herokuapp.com/movies')
             .then(response=> {
                 this.setState({
