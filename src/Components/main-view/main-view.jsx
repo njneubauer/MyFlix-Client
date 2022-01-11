@@ -1,6 +1,8 @@
 import React from 'react';
+import { Render } from 'react-router-dom'
 import axios from 'axios';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 // bootstrap & scss
 import { MovieCard } from '../movie-card/movie-card.jsx';
 import { MovieView } from '../movie-view/movie-view.jsx';
@@ -24,16 +26,6 @@ export class MainView extends React.Component {
         }
     }
 
-    componentDidMount(){
-        let accessToken = localStorage.getItem('token');
-        if(accessToken !== null){
-            this.setState({
-                user: localStorage.getItem('user')
-            });
-            this.getMovies(accessToken);
-        }
-    }
-
     getMovies(token){
         axios.get('https://nickflixapi.herokuapp.com/movies', {
             headers: {Authorization: `bearer ${token}`}
@@ -44,6 +36,16 @@ export class MainView extends React.Component {
         }).catch(error=>{
             console.log(error);
         });
+    }
+    
+    componentDidMount(){
+        let accessToken = localStorage.getItem('token');
+        if(accessToken !== null){
+            this.setState({
+                user: localStorage.getItem('user')
+            });
+            this.getMovies(accessToken);
+        }
     }
     
     setSelectedMovie(newSelectedMovie) {
@@ -73,42 +75,53 @@ export class MainView extends React.Component {
     }
 
     render(){
+        const { movies, user, newUser } = this.state;
 
-        const { movies, selectedMovie, user, newUser } = this.state;
+        const login = ()=>{
+            if (newUser === true) return <RegistrationView  onSignUp={newUser=>{this.onNewUser(newUser)}}/>
+                                
+            if (!user) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} />
+                                            
+            if (movies.length === 0) return <div className="main-view" />;
+            
+            return movies.map(m=>(
+                <Col s={12} md={6} lg={4} xl={3} xxl={2} key={m._id}>
+                    <MovieCard movieData={m} />
+                </Col>
+            ))
+        }
 
-        if(newUser === true) return <RegistrationView  onSignUp={newUser=>{this.onNewUser(newUser)}}/>
-        
-        if(!user) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} onSignUp={newUser=>{this.onNewUser(newUser)}} />
-        
-        if (movies.length === 0) return <div className="main-view" />;
+        const registration = ()=>{
+            return <Col>
+                    <RegistrationView />
+                </Col>
+        }
 
         return (
-        <div className="main-view-container bg">
-            <header id='main-view'>
-                <nav>
-                    <h1>Nickflix</h1>
-                    <ul className='nav-items'>
-                        <li><Button className='primary logout' onClick={()=>{ this.onLogout(); }}>Logout</Button></li>
-                    </ul>
-                </nav>
-            </header>
+          
             <Container className='justify-content-center' align="center" fluid>
                 <Row className="main-view">
-                    {selectedMovie
-                        ? (
-                            <Col key={selectedMovie._id} md={12}>
-                                <MovieView key={selectedMovie._id} movie={selectedMovie} onBackClick={(newSelectedMovie)=>{this.setSelectedMovie(newSelectedMovie);}} />
-                            </Col>
-                        )
-                        : movies.map(movie => (
-                            <Col key={movie._id} s={12} md={6} lg={4} xl={3} xxl={2}>
-                                <MovieCard key={movie._id} movieData={movie} onMovieClick={(newSelectedMovie)=>{this.setSelectedMovie(newSelectedMovie);}} />
-                            </Col>
-                        ))
-                    }
+                    <BrowserRouter>
+                        <Routes>
+                            <Route exact path="/" element={login()} />
+                            
+                            <Route path="/registration" element={registration()}/>
+
+                            <Route path="/movies/:movieId" element={({ match })=>{
+                                if (!user) return <Col>
+                                    <LoginView onLoggedIn={user=> this.onLoggedIn(user)} />
+                                </Col>
+
+                                if (movies.length === 0) return <div className="main-view" />;
+
+                                return <Col md={12}>
+                                            <MovieView movie={movies.find(m=> m._id === match.params.movieId)} />
+                                        </Col>
+                            }} />
+                        </Routes>
+                    </BrowserRouter>
                 </Row>
             </Container>
-        </div>
         );
     }
 }

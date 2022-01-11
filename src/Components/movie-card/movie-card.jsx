@@ -1,20 +1,19 @@
 import React from "react";
 import propTypes from "prop-types";
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom'
 import './movie-card.scss';
 
 export class MovieCard extends React.Component {
     render(){
-        const { movieData, onMovieClick } = this.props;
-        const styling = {
-            overflow: 'hidden', 
-            textOverflow: 'ellipsis'
-        };
-
+        const { movieData } = this.props;
+        console.log(movieData);
         return (
-            <div className="movie-card" onClick={()=>{ onMovieClick(movieData); }}>
+            <div className="movie-card">
                 <Card style={{ width: '14rem' }}>
-                    <Card.Img className="img-responsive" variant="top" src={movieData.imageUrl} />
+                    <Link to={`/movies/${movieData._id}`}>
+                        <Card.Img className="img-responsive" variant="top" src={movieData.imageUrl} />
+                    </Link>
                 </Card>
             </div>
         );

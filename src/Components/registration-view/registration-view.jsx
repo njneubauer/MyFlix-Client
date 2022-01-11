@@ -49,14 +49,17 @@ export function RegistrationView(props){
         e.preventDefault();
         const isReq = validate();
         if(isReq){
-            axios.post('https://nickflixapi.herokuapp.com/login?username=${username}&password=${password}', {
+            axios.post('https://nickflixapi.herokuapp.com/registration', {
                 username: username,
-                password: password
+                password: password,
+                email: email,
+                birthday: birthday
             }).then(response=>{
                 const data = response.data;
-                props.onLoggedIn(data);
+                console.log(data);
+                window.open('/', '_slef');
             }).catch(e=>{
-                console.log('no such user');
+                console.log('error registering the user');
             });
         };
     }

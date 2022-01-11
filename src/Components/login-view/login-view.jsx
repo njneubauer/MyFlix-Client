@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 import { Form, Button } from "react-bootstrap";
 import './login-view.scss'
 import propTypes from "prop-types";
@@ -75,7 +76,9 @@ export function LoginView(props) {
                             </Form.Label>
                             </Form.Group>
                             <Button type="submit" className="btn-login" variant="primary" onClick={handleSubmit}>Sign In</Button>
-                            <Button type="submit" className="btn-login" variant="outline-light" onClick={ ()=>{props.onSignUp(true);} }>Create Account</Button>
+                            <Link to="/registration">
+                                <Button type="submit" className="btn-login" variant="outline-light">Create Account</Button>
+                            </Link>
                         </Form>
                     </div>
                 </div>
@@ -92,6 +95,5 @@ export function LoginView(props) {
 
 LoginView.propTypes = {
     onSignUp: propTypes.func.isRequired,
-    // will be removed once auth built in.
     onLoggedIn: propTypes.func.isRequired    
 }
