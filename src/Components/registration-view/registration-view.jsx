@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import propTypes from "prop-types";
+import { Link } from 'react-router-dom';
 import { Form, Button } from "react-bootstrap";
 import './registration-view.scss';
+import propTypes from "prop-types";
 
 
 export function RegistrationView(props){
@@ -26,6 +27,10 @@ export function RegistrationView(props){
             setUsernameErr('Username must be at least 5 characters long');
             isReq = false;
         }
+        else{
+            setUsernameErr('');
+        }
+
         if(!password){
             setPasswordErr('Password required');
             isReq = false;
@@ -34,13 +39,35 @@ export function RegistrationView(props){
             setPasswordErr('Password must be at least 5 characters long');
             isReq = false;
         }
+        else{
+            setPasswordErr('');
+        }
+
+        function validateEmail(Email){
+            const regExpression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regExpression.test(Email);
+        }
+
         if(!email){
             setEmailErr('Email required');
             isReq = false;
         }
-        if(!birthday){
-            setBirthdayErr('Birthday required')
+        else if(!validateEmail(email)){
+            setEmailErr('Incorrect email format');
+            isReq = false;
         }
+        else {
+            setEmailErr('');
+        }
+
+        if(!birthday){
+            setBirthdayErr('Birthday required');
+            isReq = false
+        }
+        else{
+            setBirthdayErr('');
+        }
+        
         return isReq;
     }
 
@@ -57,19 +84,15 @@ export function RegistrationView(props){
             }).then(response=>{
                 const data = response.data;
                 console.log(data);
-                window.open('/', '_slef');
+                window.open('/', '_self');
             }).catch(e=>{
-                console.log('error registering the user');
+                console.log('error registering the user...');
             });
         };
     }
 
     return (
-        <div className="background-wrapper">
-            <div className="background-overlay">
-                <header className="header-container">
-                    <h1>Nickflix</h1>
-                </header>
+        <div className="registration-view">
                 <div className="form-card">
                     <div className="form-container-registration">
                         <Form>
@@ -95,7 +118,9 @@ export function RegistrationView(props){
                                 {birthdayErr && <p className="validation-err-text">{birthdayErr}</p>}
                             </Form.Label><br />
                             <Button className="btn-registration" variant="success" type="submit" onClick={handleSubmit}>Create Account</Button>
-                            <Button className="btn-registration" variant="outline-light" onClick={()=>{props.onSignUp(false);}}>Back to Sign In</Button>
+                            <Link to="/">
+                                <Button className="btn-registration" variant="outline-light">Back to Sign In</Button>
+                            </Link>
                         </Form>
                     </div>
                 </div>
@@ -105,11 +130,9 @@ export function RegistrationView(props){
                         <p>&copy;Neubauer Development</p>
                     </div>
                 </footer>
-            </div>
         </div>
     );
 }
 
 RegistrationView.propTypes = {
-    onSignUp: propTypes.func.isRequired
 }

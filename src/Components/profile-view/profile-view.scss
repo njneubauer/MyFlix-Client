@@ -1,22 +1,19 @@
-$background-shader: rgba(0, 0, 0, 0.548);
 $card-shader: rgba(0, 0, 0, 0.753);
 $form-text: white;
 $background-color: linear-gradient(180deg, black, rgb(61, 61, 61));
 
-.registration-view {
+.profile-view {
     position: absolute;
-    background-color: $background-shader;
     margin: 0;
     padding: 0 !important;
     width: 100% ;
-    height: 960px;
 }
 
-.form-container-registration {
+.form-container-profile {
     background: $card-shader;
     color: $form-text;
     padding: 30px 60px 50px 60px;
-    width: 370px;
+    width: 400px;
     min-height: 625px;
     max-height: 750px;
     font-size: 1.2em;
@@ -24,7 +21,7 @@ $background-color: linear-gradient(180deg, black, rgb(61, 61, 61));
     text-align: left;
 }
 
-.btn-registration {
+.btn-profile {
     display: block;
     width: 100%;
     margin-top: 15px;

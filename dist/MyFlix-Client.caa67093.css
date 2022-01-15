@@ -1,0 +1,17 @@
+#container {
+  background: linear-gradient(180deg, black, #3d3d3d);
+  background-image: url(MyFlix-Client.caa67093.css);
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 950px;
+}
+
+.app-container {
+  margin: 0;
+}
+
+div {
+  margin: 12px 0px 12px 0px;
+}
+/*# sourceMappingURL=MyFlix-Client.caa67093.css.map */

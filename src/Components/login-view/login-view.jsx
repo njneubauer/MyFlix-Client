@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { Form, Button } from "react-bootstrap";
 import './login-view.scss'
 import propTypes from "prop-types";
@@ -16,7 +16,7 @@ export function LoginView(props) {
     const validate = ()=>{
         let isReq = true;
         if(!username){
-            setUsernameErr('Username required')
+            setUsernameErr('Username required');
             isReq = false;
         }
         else if(username.length < 5){
@@ -41,7 +41,7 @@ export function LoginView(props) {
 
         if(isReq){
             /* Send a request to the server for authentication */
-            axios.post('https://nickflixapi.herokuapp.com/login?username=${username}&password=${password}', {
+            axios.post('https://nickflixapi.herokuapp.com/login', {
                 username: username,
                 password: password
             }).then(response=>{
@@ -52,48 +52,42 @@ export function LoginView(props) {
             });
         }
     };
-
+    
     return (
-        <div className="background-wrapper">
-            <div className="background-overlay">
-                <header className="header-container">
-                    <h1>Nickflix</h1>
-                </header>
-                <div className="form-card">
-                    <div className="form-container">
-                        <Form>
-                            <Form.Label className="form-title">Sign In</Form.Label>
-                            <Form.Group>
-                            <Form.Label>
-                                Username
-                                <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />    
-                                {usernameErr && <p className="validation-err-text">{usernameErr}</p>}
-                            </Form.Label><br />
-                            <Form.Label>
-                                Password
-                                <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                                {passwordErr && <p className="validation-err-text">{passwordErr}</p>}
-                            </Form.Label>
-                            </Form.Group>
-                            <Button type="submit" className="btn-login" variant="primary" onClick={handleSubmit}>Sign In</Button>
-                            <Link to="/registration">
-                                <Button type="submit" className="btn-login" variant="outline-light">Create Account</Button>
-                            </Link>
-                        </Form>
-                    </div>
+        <div className="login-view">
+            <div className="form-card">
+                <div className="form-container">
+                    <Form>
+                        <Form.Label className="form-title">Sign In</Form.Label>
+                        <Form.Group>
+                        <Form.Label>
+                            Username
+                            <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />    
+                            {usernameErr && <p className="validation-err-text">{usernameErr}</p>}
+                        </Form.Label><br />
+                        <Form.Label>
+                            Password
+                            <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                            {passwordErr && <p className="validation-err-text">{passwordErr}</p>}
+                        </Form.Label>
+                        </Form.Group>
+                        <Button type="submit" className="btn-login" variant="primary" onClick={handleSubmit}>Sign In</Button>
+                        <Link to="/registration">
+                            <Button type="submit" className="btn-login" variant="outline-light">Create Account</Button>
+                        </Link>
+                    </Form>
                 </div>
-                <footer>
-                    <div className="footer-container">
-                        <p>Background Image Credit:&nbsp;<a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a></p>
-                        <p>&copy;Neubauer Development</p>
-                    </div>
-                </footer>
             </div>
+            <footer>
+                <div className="footer-container">
+                    <p>Background Image Credit:&nbsp;<a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a></p>
+                    <p>&copy;Neubauer Development</p>
+                </div>
+            </footer>
         </div>
     );
 }
 
 LoginView.propTypes = {
-    onSignUp: propTypes.func.isRequired,
-    onLoggedIn: propTypes.func.isRequired    
-}
+    onLoggedIn: propTypes.func.isRequired
+};

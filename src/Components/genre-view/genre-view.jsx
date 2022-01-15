@@ -6,13 +6,14 @@ import propTypes from "prop-types";
 
 export class GenreView extends React.Component {
     render() {
-        const { genre, dirParam, onBackClick } = this.props;
-        const dfilter = genre.filter(d=>d.name === dirParam);
-        const genreInfo = dfilter.map(function(d){
+        const { genre, genreParam, onBackClick } = this.props;
+        console.log(genreParam)
+        const genrefilter = genre.filter(g=>g.name === genreParam);
+        const genreInfo = genrefilter.map(function(g){
             return (
                <div className="genre-info"> 
-                    <h2 key={d.name}>{d.name}</h2>
-                    <p key={d.bio}>{d.bio}</p>
+                    <h2 key={g.name}><strong>{g.name}</strong></h2>
+                    <p key={g.description}>{g.description}</p>
                 </div>
             )
          });
@@ -20,8 +21,8 @@ export class GenreView extends React.Component {
         return (
             <div className="genre-view">
                 <div className="genre-view-container-1">
-                    <div className="dir-item-1">
-                        <h1 className="label">genre Information</h1>
+                    <div className="genre-item-1">
+                        <h1 className="label">Genre Information</h1>
                         {genreInfo}
                         <Button id="btn-genre-back" className="primary movie-img-btn" onClick={ ()=>{ onBackClick(null); }}>Back</Button>
                     </div>

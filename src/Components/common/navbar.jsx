@@ -4,13 +4,12 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 export function NavBar(props){
-    console.log(props);
     const renderNavButtons = ()=>{
         return props.user === null ? (
             <div></div>
         ) : (<div>
                 <ul className='links'>
-                    <li><Nav.Link>Profile</Nav.Link></li>
+                    <li><Link to='/profile'>Profile</Link></li>
                     <li><Button className='btn-logout' onClick={()=>props.onLogout()}>Logout</Button></li>
                 </ul>
                

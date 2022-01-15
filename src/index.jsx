@@ -9,8 +9,11 @@ import './index.scss';
 // Main component
 class MyFlixApplication extends React.Component {
     render() {
-        return (
-            <MainView />
+        return (            
+            <Container id="container" className="justify-content-center" align="center" fluid>
+                <MainView />
+            </Container>
+            
         );
     }
 }
