@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import './profile-view.scss';
-import { Moment } from 'moment';
+import moment from 'moment';
 import propTypes from "prop-types";
 
-
-export function ProfileView({userInfo}){
+export function ProfileView({ user }){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
@@ -17,7 +16,8 @@ export function ProfileView({userInfo}){
     const [ passwordErr, setPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
     const [ birthdayErr, setBirthdayErr ] = useState('');
-    console.log(userInfo);
+    const [ userInfo, setUserInfo ] = useState({});
+
     const validate = ()=>{
         let isReq = true;
         if(!username){
@@ -72,6 +72,17 @@ export function ProfileView({userInfo}){
         return isReq;
     }
 
+    useEffect(()=>{
+        let token = localStorage.getItem('token');
+        axios.get(`https://nickflixapi.herokuapp.com/user/${user}`, {
+            headers:{ Authorization: `bearer ${token}` }
+        }).then(response=>{
+            console.log(response.data);
+            setUserInfo(response.data);
+        }).catch(e=>{
+            console.log('error aquiring user info');
+        });
+    },[]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -96,11 +107,11 @@ export function ProfileView({userInfo}){
             <Row>
                 <Col md={4}>
                     <div>
-                        {/* <h4><span>Username: </span>{userInfo.username}</h4>
+                        <h4><span>Username: </span>{userInfo.username}</h4>
                         <h4><span>Email: </span>{userInfo.email}</h4>
-                        {props.userInfo.birthday && 
-                            <h4><span>Birthday: </span>{moment(props.userInfo.birthday).format('L')}</h4>
-                        } */}
+                        { userInfo.birthday && 
+                            <h4><span>Birthday: </span>{moment.utc(userInfo.birthday).format('L')}</h4>
+                        }
                         
                     </div>
                 </Col>

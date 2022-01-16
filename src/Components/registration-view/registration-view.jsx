@@ -83,7 +83,7 @@ export function RegistrationView(props){
                 birthday: birthday
             }).then(response=>{
                 const data = response.data;
-                console.log(data);
+                alert(`Welcome ${data.username}! Please log in.`)
                 window.open('/', '_self');
             }).catch(e=>{
                 console.log('error registering the user...');
@@ -126,8 +126,10 @@ export function RegistrationView(props){
                 </div>
                 <footer>
                     <div className="footer-container">
-                        <p>Background Image Credit:&nbsp;<a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a></p>
-                        <p>&copy;Neubauer Development</p>
+                        <div className="footer-content">
+                            <p>Background Image Credit:&nbsp;<a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a></p>
+                            <p>&copy;Neubauer Development</p>
+                        </div>
                     </div>
                 </footer>
         </div>

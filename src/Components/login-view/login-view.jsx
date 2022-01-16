@@ -80,8 +80,10 @@ export function LoginView(props) {
             </div>
             <footer>
                 <div className="footer-container">
-                    <p>Background Image Credit:&nbsp;<a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a></p>
-                    <p>&copy;Neubauer Development</p>
+                    <div className="footer-content">
+                        <p>Background Image Credit:&nbsp;<a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a></p>
+                        <p>&copy;Neubauer Development</p>
+                    </div>
                 </div>
             </footer>
         </div>

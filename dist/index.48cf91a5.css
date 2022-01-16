@@ -104,8 +104,8 @@ img {
 .login-view {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.548);
+  padding: 0 !important;
   margin: 0;
-  padding: 0;
   width: 100%;
   height: 960px;
 }
@@ -160,18 +160,26 @@ img {
   margin: 10px 0px;
 }
 
-footer {
+.footer-container {
   color: #888888;
   background: rgba(0, 0, 0, 0.753);
   position: fixed;
   bottom: 0;
+  padding: 0;
+  margin: 0;
   width: 100%;
-  height: 100px;
+  height: 80px;
+}
+
+.footer-content {
+  display: block;
+  margin: 10px 0 10px 0;
 }
 
 footer p {
   text-align: center;
   padding-top: 5px;
+  margin: 0;
 }
 .registration-view {
   position: absolute;
@@ -199,6 +207,50 @@ footer p {
   width: 100%;
   margin-top: 15px;
   margin-right: 15px;
+}
+.profile-view {
+  position: absolute;
+  margin: 0;
+  padding: 0 !important;
+  width: 100%;
+}
+
+.form-container-profile {
+  background: rgba(0, 0, 0, 0.753);
+  color: white;
+  padding: 30px 60px 50px 60px;
+  width: 400px;
+  min-height: 625px;
+  max-height: 750px;
+  font-size: 1.2em;
+  margin: 30px 0 0 0;
+  text-align: left;
+}
+
+.btn-profile {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+.genre-view {
+  color: white;
+}
+
+.genre-view-container-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+}
+
+.genre-item-1 {
+  width: 800px;
+  height: auto;
+}
+
+.genre-item-1 p, h2 {
+  text-align: left;
 }
 #background-img {
   background-image: url("movie_wallpaper.47e0ab08.jpg");
@@ -251,50 +303,6 @@ nav ul {
 
 ul li {
   margin: 0 10px;
-}
-.genre-view {
-  color: white;
-}
-
-.genre-view-container-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  color: white;
-}
-
-.genre-item-1 {
-  width: 800px;
-  height: auto;
-}
-
-.genre-item-1 p, h2 {
-  text-align: left;
-}
-.profile-view {
-  position: absolute;
-  margin: 0;
-  padding: 0 !important;
-  width: 100%;
-}
-
-.form-container-profile {
-  background: rgba(0, 0, 0, 0.753);
-  color: white;
-  padding: 30px 60px 50px 60px;
-  width: 400px;
-  min-height: 625px;
-  max-height: 750px;
-  font-size: 1.2em;
-  margin: 30px 0 0 0;
-  text-align: left;
-}
-
-.btn-profile {
-  display: block;
-  width: 100%;
-  margin-top: 15px;
-  margin-right: 15px;
 }
 #container {
   padding: 0;

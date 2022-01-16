@@ -57,7 +57,6 @@ export class MainView extends React.Component {
     onLoggedIn(authData) {
         this.setState({
             user: authData.user.username,
-            userInfo: authData.user
         });
 
         localStorage.setItem('token', authData.token);
@@ -99,7 +98,7 @@ export class MainView extends React.Component {
                             
                             <Route path="/profile" render={()=>{
                                 if (!user) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} /> 
-                                return <ProfileView userInfo={userInfo} />
+                                return <ProfileView user={user} />
                             }} />
 
                             <Route path="/movies/:movieId" render={({ match, history })=>{ 
