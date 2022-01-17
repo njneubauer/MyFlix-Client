@@ -8,11 +8,11 @@ import propTypes from "prop-types";
 export class MovieView extends React.Component {
     render() {
         const { movie, onBackClick } = this.props;
-        const genres = movie.genreNames.map((genre)=><Link to={`/genres/${genre.name}`}><li key={genre.name}>{genre.name}</li></Link>);
+        const genres = movie.genreNames.map((genre)=><li key={genre.name}><Button as={Link} to={`/genres/${genre.name}`} className="primary">{genre.name}</Button></li>);
         const directorInfo = movie.directorInfo.map(function(d){
            return (
                <div className="director-info"> 
-                    <Link to={`/directors/${d.name}`}><li key={d.name}>{d.name}</li></Link>
+                    <li key={d.name}><Button as={Link}to={`/directors/${d.name}`} className="primary">{d.name}</Button></li>
                 </div>
             )
          });
@@ -35,11 +35,11 @@ export class MovieView extends React.Component {
                         </div>
                         <div className="genre">
                             <h1 className="label">Genre </h1>
-                            <ul>{genres}</ul>
+                            <ul className="d-flex">{genres}</ul>
                         </div>
                         <div className="director">
                             <h1 className="label">Director </h1>
-                            <ul>{directorInfo}</ul>
+                            <ul className="d-flex">{directorInfo}</ul>
                         </div>
                         <div className="plot">
                             <h1 className="label">Plot </h1>

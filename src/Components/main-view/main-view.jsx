@@ -104,7 +104,7 @@ export class MainView extends React.Component {
                             
                             <Route path="/profile" render={()=>{
                                 if (!user) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} /> 
-                                return <ProfileView user={user} updateUserState={user=> this.updateUserState(user)} />
+                                return <ProfileView user={user} updateUserState={user=> this.updateUserState(user)} onLogout={()=> this.onLogout()} />
                             }} />
 
                             <Route path="/movies/:movieId" render={({ match, history })=>{ 

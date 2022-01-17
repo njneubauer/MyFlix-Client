@@ -22915,6 +22915,8 @@ class MainView extends _reactDefault.default.Component {
                                     return(/*#__PURE__*/ _jsxRuntime.jsx(_profileViewJsx.ProfileView, {
                                         user: user,
                                         updateUserState: (user1)=>this.updateUserState(user1)
+                                        ,
+                                        onLogout: ()=>this.onLogout()
                                     }));
                                 },
                                 __source: {
@@ -28127,22 +28129,24 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 class MovieView extends _reactDefault.default.Component {
     render() {
         const { movie , onBackClick  } = this.props;
-        const genres = movie.genreNames.map((genre)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
-                to: `/genres/${genre.name}`,
+        const genres = movie.genreNames.map((genre)=>/*#__PURE__*/ _jsxRuntime.jsx("li", {
                 __source: {
                     fileName: "src/Components/movie-view/movie-view.jsx",
                     lineNumber: 11
                 },
                 __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsx("li", {
+                children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                    as: _reactRouterDom.Link,
+                    to: `/genres/${genre.name}`,
+                    className: "primary",
                     __source: {
                         fileName: "src/Components/movie-view/movie-view.jsx",
                         lineNumber: 11
                     },
                     __self: this,
                     children: genre.name
-                }, genre.name)
-            })
+                })
+            }, genre.name)
         );
         const directorInfo = movie.directorInfo.map(function(d) {
             return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
@@ -28152,22 +28156,24 @@ class MovieView extends _reactDefault.default.Component {
                     lineNumber: 14
                 },
                 __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
-                    to: `/directors/${d.name}`,
+                children: /*#__PURE__*/ _jsxRuntime.jsx("li", {
                     __source: {
                         fileName: "src/Components/movie-view/movie-view.jsx",
                         lineNumber: 15
                     },
                     __self: this,
-                    children: /*#__PURE__*/ _jsxRuntime.jsx("li", {
+                    children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                        as: _reactRouterDom.Link,
+                        to: `/directors/${d.name}`,
+                        className: "primary",
                         __source: {
                             fileName: "src/Components/movie-view/movie-view.jsx",
                             lineNumber: 15
                         },
                         __self: this,
                         children: d.name
-                    }, d.name)
-                })
+                    })
+                }, d.name)
             }));
         });
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
@@ -28298,6 +28304,7 @@ class MovieView extends _reactDefault.default.Component {
                                         children: "Genre "
                                     }),
                                     /*#__PURE__*/ _jsxRuntime.jsx("ul", {
+                                        className: "d-flex",
                                         __source: {
                                             fileName: "src/Components/movie-view/movie-view.jsx",
                                             lineNumber: 38
@@ -28325,6 +28332,7 @@ class MovieView extends _reactDefault.default.Component {
                                         children: "Director "
                                     }),
                                     /*#__PURE__*/ _jsxRuntime.jsx("ul", {
+                                        className: "d-flex",
                                         __source: {
                                             fileName: "src/Components/movie-view/movie-view.jsx",
                                             lineNumber: 42
@@ -40662,6 +40670,7 @@ function NavBar(props) {
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
                             className: "btn-logout",
+                            variant: "danger",
                             onClick: ()=>props.onLogout()
                             ,
                             __source: {
@@ -40902,7 +40911,7 @@ var _momentDefault = parcelHelpers.interopDefault(_moment);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _s = $RefreshSig$();
-function ProfileView({ user , updateUserState  }) {
+function ProfileView({ user , updateUserState , onLogout  }) {
     _s();
     var _s1 = $RefreshSig$();
     const [username, setUsername] = _react.useState('');
@@ -40917,6 +40926,7 @@ function ProfileView({ user , updateUserState  }) {
     const [birthdayErr, setBirthdayErr] = _react.useState('');
     const [userInfo, setUserInfo] = _react.useState({
     });
+    let token = localStorage.getItem('token');
     const validate = ()=>{
         let isReq = true;
         if (!username) {
@@ -40958,15 +40968,13 @@ function ProfileView({ user , updateUserState  }) {
     function getUserData(username1) {
         _s1();
         username1 = user;
-        console.log(`username= ${username1}`);
         _react.useEffect(()=>{
-            let token = localStorage.getItem('token');
+            let token1 = localStorage.getItem('token');
             _axiosDefault.default.get(`https://nickflixapi.herokuapp.com/user/${user}`, {
                 headers: {
-                    Authorization: `bearer ${token}`
+                    Authorization: `bearer ${token1}`
                 }
             }).then((response)=>{
-                console.log(response.data);
                 setUserInfo(response.data);
             }).catch((e)=>{
                 console.log('error aquiring user info');
@@ -40977,7 +40985,6 @@ function ProfileView({ user , updateUserState  }) {
     getUserData(user);
     function handleSubmit(e) {
         e.preventDefault();
-        let token = localStorage.getItem('token');
         const isReq = validate();
         if (isReq) _axiosDefault.default({
             method: 'put',
@@ -41000,16 +41007,27 @@ function ProfileView({ user , updateUserState  }) {
             console.log('error updating user info');
         });
     }
+    function handleDelete() {
+        _axiosDefault.default.delete(`https://nickflixapi.herokuapp.com/remove/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            onLogout();
+        }).catch((err)=>{
+            console.error(err);
+        });
+    }
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
         __source: {
             fileName: "src/Components/profile-view/profile-view.jsx",
-            lineNumber: 128
+            lineNumber: 139
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/Components/profile-view/profile-view.jsx",
-                lineNumber: 129
+                lineNumber: 140
             },
             __self: this,
             children: [
@@ -41018,14 +41036,14 @@ function ProfileView({ user , updateUserState  }) {
                     className: "d-flex align-items-center justify-content-center",
                     __source: {
                         fileName: "src/Components/profile-view/profile-view.jsx",
-                        lineNumber: 130
+                        lineNumber: 141
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs("div", {
                         className: "user-info-text",
                         __source: {
                             fileName: "src/Components/profile-view/profile-view.jsx",
-                            lineNumber: 131
+                            lineNumber: 142
                         },
                         __self: this,
                         children: [
@@ -41033,13 +41051,13 @@ function ProfileView({ user , updateUserState  }) {
                                 className: "user-info-item",
                                 __source: {
                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                    lineNumber: 132
+                                    lineNumber: 143
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx("span", {
                                     __source: {
                                         fileName: "src/Components/profile-view/profile-view.jsx",
-                                        lineNumber: 132
+                                        lineNumber: 143
                                     },
                                     __self: this,
                                     children: "Account Information:"
@@ -41049,14 +41067,14 @@ function ProfileView({ user , updateUserState  }) {
                                 className: "user-info-item",
                                 __source: {
                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                    lineNumber: 133
+                                    lineNumber: 144
                                 },
                                 __self: this,
                                 children: [
                                     /*#__PURE__*/ _jsxRuntime.jsx("span", {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 133
+                                            lineNumber: 144
                                         },
                                         __self: this,
                                         children: "Username: "
@@ -41068,14 +41086,14 @@ function ProfileView({ user , updateUserState  }) {
                                 className: "user-info-item",
                                 __source: {
                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                    lineNumber: 134
+                                    lineNumber: 145
                                 },
                                 __self: this,
                                 children: [
                                     /*#__PURE__*/ _jsxRuntime.jsx("span", {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 134
+                                            lineNumber: 145
                                         },
                                         __self: this,
                                         children: "Email: "
@@ -41087,14 +41105,14 @@ function ProfileView({ user , updateUserState  }) {
                                 className: "user-info-item",
                                 __source: {
                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                    lineNumber: 136
+                                    lineNumber: 147
                                 },
                                 __self: this,
                                 children: [
                                     /*#__PURE__*/ _jsxRuntime.jsx("span", {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 136
+                                            lineNumber: 147
                                         },
                                         __self: this,
                                         children: "Birthday: "
@@ -41110,27 +41128,27 @@ function ProfileView({ user , updateUserState  }) {
                     md: 7,
                     __source: {
                         fileName: "src/Components/profile-view/profile-view.jsx",
-                        lineNumber: 141
+                        lineNumber: 152
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx("div", {
                         className: "form-card",
                         __source: {
                             fileName: "src/Components/profile-view/profile-view.jsx",
-                            lineNumber: 142
+                            lineNumber: 153
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsx("div", {
                             className: "form-container-profile",
                             __source: {
                                 fileName: "src/Components/profile-view/profile-view.jsx",
-                                lineNumber: 143
+                                lineNumber: 154
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form, {
                                 __source: {
                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                    lineNumber: 144
+                                    lineNumber: 155
                                 },
                                 __self: this,
                                 children: [
@@ -41138,7 +41156,7 @@ function ProfileView({ user , updateUserState  }) {
                                         className: "form-title",
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 145
+                                            lineNumber: 156
                                         },
                                         __self: this,
                                         children: "Update Info"
@@ -41146,7 +41164,7 @@ function ProfileView({ user , updateUserState  }) {
                                     /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Label, {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 146
+                                            lineNumber: 157
                                         },
                                         __self: this,
                                         children: [
@@ -41154,7 +41172,7 @@ function ProfileView({ user , updateUserState  }) {
                                             /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 147
+                                                    lineNumber: 158
                                                 },
                                                 __self: this
                                             }),
@@ -41166,7 +41184,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 },
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 148
+                                                    lineNumber: 159
                                                 },
                                                 __self: this
                                             }),
@@ -41174,7 +41192,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 className: "validation-err-text",
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 149
+                                                    lineNumber: 160
                                                 },
                                                 __self: this,
                                                 children: usernameErr
@@ -41184,14 +41202,14 @@ function ProfileView({ user , updateUserState  }) {
                                     /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 150
+                                            lineNumber: 161
                                         },
                                         __self: this
                                     }),
                                     /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Label, {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 151
+                                            lineNumber: 162
                                         },
                                         __self: this,
                                         children: [
@@ -41199,7 +41217,7 @@ function ProfileView({ user , updateUserState  }) {
                                             /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 152
+                                                    lineNumber: 163
                                                 },
                                                 __self: this
                                             }),
@@ -41211,7 +41229,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 },
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 153
+                                                    lineNumber: 164
                                                 },
                                                 __self: this
                                             }),
@@ -41219,7 +41237,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 className: "validation-err-text",
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 154
+                                                    lineNumber: 165
                                                 },
                                                 __self: this,
                                                 children: passwordErr
@@ -41229,14 +41247,14 @@ function ProfileView({ user , updateUserState  }) {
                                     /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 155
+                                            lineNumber: 166
                                         },
                                         __self: this
                                     }),
                                     /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Label, {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 156
+                                            lineNumber: 167
                                         },
                                         __self: this,
                                         children: [
@@ -41244,7 +41262,7 @@ function ProfileView({ user , updateUserState  }) {
                                             /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 157
+                                                    lineNumber: 168
                                                 },
                                                 __self: this
                                             }),
@@ -41256,7 +41274,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 },
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 158
+                                                    lineNumber: 169
                                                 },
                                                 __self: this
                                             }),
@@ -41264,7 +41282,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 className: "validation-err-text",
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 159
+                                                    lineNumber: 170
                                                 },
                                                 __self: this,
                                                 children: confirmPasswordErr
@@ -41274,14 +41292,14 @@ function ProfileView({ user , updateUserState  }) {
                                     /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 160
+                                            lineNumber: 171
                                         },
                                         __self: this
                                     }),
                                     /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Label, {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 161
+                                            lineNumber: 172
                                         },
                                         __self: this,
                                         children: [
@@ -41289,7 +41307,7 @@ function ProfileView({ user , updateUserState  }) {
                                             /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 162
+                                                    lineNumber: 173
                                                 },
                                                 __self: this
                                             }),
@@ -41302,7 +41320,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 required: true,
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 163
+                                                    lineNumber: 174
                                                 },
                                                 __self: this
                                             }),
@@ -41310,7 +41328,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 className: "validation-err-text",
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 164
+                                                    lineNumber: 175
                                                 },
                                                 __self: this,
                                                 children: emailErr
@@ -41320,14 +41338,14 @@ function ProfileView({ user , updateUserState  }) {
                                     /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 165
+                                            lineNumber: 176
                                         },
                                         __self: this
                                     }),
                                     /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Label, {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 166
+                                            lineNumber: 177
                                         },
                                         __self: this,
                                         children: [
@@ -41335,7 +41353,7 @@ function ProfileView({ user , updateUserState  }) {
                                             /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 167
+                                                    lineNumber: 178
                                                 },
                                                 __self: this
                                             }),
@@ -41347,7 +41365,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 },
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 168
+                                                    lineNumber: 179
                                                 },
                                                 __self: this
                                             }),
@@ -41355,7 +41373,7 @@ function ProfileView({ user , updateUserState  }) {
                                                 className: "validation-err-text",
                                                 __source: {
                                                     fileName: "src/Components/profile-view/profile-view.jsx",
-                                                    lineNumber: 169
+                                                    lineNumber: 180
                                                 },
                                                 __self: this,
                                                 children: birthdayErr
@@ -41365,7 +41383,7 @@ function ProfileView({ user , updateUserState  }) {
                                     /*#__PURE__*/ _jsxRuntime.jsx("br", {
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 170
+                                            lineNumber: 181
                                         },
                                         __self: this
                                     }),
@@ -41376,7 +41394,7 @@ function ProfileView({ user , updateUserState  }) {
                                         onClick: handleSubmit,
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 171
+                                            lineNumber: 182
                                         },
                                         __self: this,
                                         children: "Update Info"
@@ -41385,15 +41403,16 @@ function ProfileView({ user , updateUserState  }) {
                                         to: "/",
                                         __source: {
                                             fileName: "src/Components/profile-view/profile-view.jsx",
-                                            lineNumber: 172
+                                            lineNumber: 183
                                         },
                                         __self: this,
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                             className: "btn-registration",
                                             variant: "outline-danger",
+                                            onClick: handleDelete,
                                             __source: {
                                                 fileName: "src/Components/profile-view/profile-view.jsx",
-                                                lineNumber: 173
+                                                lineNumber: 184
                                             },
                                             __self: this,
                                             children: "Delete Account"

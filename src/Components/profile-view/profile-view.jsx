@@ -6,7 +6,7 @@ import './profile-view.scss';
 import moment from 'moment';
 import propTypes from "prop-types";
 
-export function ProfileView({ user, updateUserState }){
+export function ProfileView({ user, updateUserState, onLogout }){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
@@ -19,6 +19,8 @@ export function ProfileView({ user, updateUserState }){
     const [ emailErr, setEmailErr ] = useState('');
     const [ birthdayErr, setBirthdayErr ] = useState('');
     const [ userInfo, setUserInfo ] = useState({});
+    
+    let token = localStorage.getItem('token');
 
     const validate = ()=>{
         let isReq = true;
@@ -83,13 +85,11 @@ export function ProfileView({ user, updateUserState }){
 
     function getUserData(username){
         username = user;
-        console.log(`username= ${username}`)
         useEffect(()=>{
             let token = localStorage.getItem('token');
             axios.get(`https://nickflixapi.herokuapp.com/user/${user}`, {
                 headers:{ Authorization: `bearer ${token}` }
             }).then(response=>{
-                console.log(response.data);
                 setUserInfo(response.data);
             }).catch(e=>{
                 console.log('error aquiring user info');
@@ -100,7 +100,6 @@ export function ProfileView({ user, updateUserState }){
 
     function handleSubmit(e) {
         e.preventDefault();
-        let token = localStorage.getItem('token');
         const isReq = validate();
         if(isReq){
             axios({
@@ -123,6 +122,18 @@ export function ProfileView({ user, updateUserState }){
             });
         };
     }
+
+    function handleDelete(){
+        axios.delete(`https://nickflixapi.herokuapp.com/remove/${user}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        }).then(response => {
+                onLogout();
+            })
+            .catch(err => {
+                console.error(err)
+            });
+    }
+
 
     return (
         <Container>
@@ -170,7 +181,7 @@ export function ProfileView({ user, updateUserState }){
                                     </Form.Label><br />
                                     <Button className="btn-registration" variant="success" type="submit" onClick={handleSubmit}>Update Info</Button>
                                     <Link to="/">
-                                        <Button className="btn-registration" variant="outline-danger">Delete Account</Button>
+                                        <Button className="btn-registration" variant="outline-danger" onClick={handleDelete}>Delete Account</Button>
                                     </Link>
                                 </Form>
                             </div>

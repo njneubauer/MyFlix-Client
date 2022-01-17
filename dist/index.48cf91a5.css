@@ -75,6 +75,11 @@ img {
   margin: 0 30px;
 }
 
+.movie-item-2 ul {
+  padding: 0;
+  list-style-type: none;
+}
+
 .movie-item-2 h1 {
   font-size: 18pt !important;
 }
