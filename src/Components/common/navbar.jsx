@@ -9,7 +9,7 @@ export function NavBar(props){
             <div></div>
         ) : (<div>
                 <ul className='links'>
-                    <li><Link to='/profile'>Profile</Link></li>
+                    <li><Nav.Link as={Link} to='/profile'>Profile</Nav.Link></li>
                     <li><Button className='btn-logout' onClick={()=>props.onLogout()}>Logout</Button></li>
                 </ul>
                
@@ -22,8 +22,8 @@ export function NavBar(props){
         <Navbar className='py-0' bg="dark" variant="dark" sticky="top">
             <Container className='nav-container' fluid>
                 <Nav>
-                    <Navbar.Brand align="top">
-                            <Link to='/'><h1>Nickflix</h1></Link>
+                    <Navbar.Brand as={Link} to='/' align="top">
+                        <h1>Nickflix</h1>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 </Nav>

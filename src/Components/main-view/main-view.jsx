@@ -56,12 +56,18 @@ export class MainView extends React.Component {
 
     onLoggedIn(authData) {
         this.setState({
-            user: authData.user.username,
+            user: authData.user.username
         });
 
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.username);
         this.getMovies(authData.token);
+    }
+
+    updateUserState(username){
+        this.setState({
+            user: username
+        });
     }
 
     onLogout(){
@@ -98,7 +104,7 @@ export class MainView extends React.Component {
                             
                             <Route path="/profile" render={()=>{
                                 if (!user) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} /> 
-                                return <ProfileView user={user} />
+                                return <ProfileView user={user} updateUserState={user=> this.updateUserState(user)} />
                             }} />
 
                             <Route path="/movies/:movieId" render={({ match, history })=>{ 

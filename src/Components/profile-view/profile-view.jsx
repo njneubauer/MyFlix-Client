@@ -6,14 +6,16 @@ import './profile-view.scss';
 import moment from 'moment';
 import propTypes from "prop-types";
 
-export function ProfileView({ user }){
+export function ProfileView({ user, updateUserState }){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ confirmPassword, setConfirmPassword ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ birthday, setBirthday ] = useState('');
 
     const [ usernameErr, setUsernameErr ] = useState('');
     const [ passwordErr, setPasswordErr ] = useState('');
+    const [ confirmPasswordErr, setConfirmPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
     const [ birthdayErr, setBirthdayErr ] = useState('');
     const [ userInfo, setUserInfo ] = useState({});
@@ -36,9 +38,16 @@ export function ProfileView({ user }){
             setPasswordErr('Password required');
             isReq = false;
         }
+        if(!confirmPassword){
+            setConfirmPasswordErr('Password required');
+            isReq = false;
+        }
         else if(password.length < 5){
             setPasswordErr('Password must be at least 5 characters long');
             isReq = false;
+        }
+        else if(password != confirmPassword){
+            setConfirmPasswordErr('Passowrds must match exactly');
         }
         else{
             setPasswordErr('');
@@ -72,30 +81,43 @@ export function ProfileView({ user }){
         return isReq;
     }
 
-    useEffect(()=>{
-        let token = localStorage.getItem('token');
-        axios.get(`https://nickflixapi.herokuapp.com/user/${user}`, {
-            headers:{ Authorization: `bearer ${token}` }
-        }).then(response=>{
-            console.log(response.data);
-            setUserInfo(response.data);
-        }).catch(e=>{
-            console.log('error aquiring user info');
-        });
-    },[]);
+    function getUserData(username){
+        username = user;
+        console.log(`username= ${username}`)
+        useEffect(()=>{
+            let token = localStorage.getItem('token');
+            axios.get(`https://nickflixapi.herokuapp.com/user/${user}`, {
+                headers:{ Authorization: `bearer ${token}` }
+            }).then(response=>{
+                console.log(response.data);
+                setUserInfo(response.data);
+            }).catch(e=>{
+                console.log('error aquiring user info');
+            });
+        },[]);
+    }
+    getUserData(user);
 
     function handleSubmit(e) {
         e.preventDefault();
+        let token = localStorage.getItem('token');
         const isReq = validate();
         if(isReq){
-            axios.post('https://nickflixapi.herokuapp.com/user/update/', {
-                username: username,
-                password: password,
-                email: email,
-                birthday: birthday
+            axios({
+                method: 'put', 
+                url: `https://nickflixapi.herokuapp.com/user/update/${user}`, 
+                headers: { Authorization: `bearer ${token}` },
+                data:{
+                    username: username,
+                    password: password,
+                    email: email,
+                    birthday: birthday
+                }
             }).then(response=>{
-                const data = response.data;
-                window.open('/', '_self');
+                localStorage.setItem('user', response.data.username);
+                user = response.data.username;
+                setUserInfo(response.data);
+                updateUserState(user);
             }).catch(e=>{
                 console.log('error updating user info');
             });
@@ -105,17 +127,18 @@ export function ProfileView({ user }){
     return (
         <Container>
             <Row>
-                <Col md={4}>
-                    <div>
-                        <h4><span>Username: </span>{userInfo.username}</h4>
-                        <h4><span>Email: </span>{userInfo.email}</h4>
+                <Col md={5} className="d-flex align-items-center justify-content-center">
+                    <div className="user-info-text">
+                        <h1 className="user-info-item"><span>Account Information:</span></h1>
+                        <h4 className="user-info-item"><span>Username: </span>{userInfo.username}</h4>
+                        <h4 className="user-info-item"><span>Email: </span>{userInfo.email}</h4>
                         { userInfo.birthday && 
-                            <h4><span>Birthday: </span>{moment.utc(userInfo.birthday).format('L')}</h4>
+                            <h4 className="user-info-item"><span>Birthday: </span>{moment.utc(userInfo.birthday).format('L')}</h4>
                         }
                         
                     </div>
                 </Col>
-                <Col className="justify-content-center" md={8}>
+                <Col className="d-flex align-items-center justify-content-center" md={7}>
                         <div className="form-card">
                             <div className="form-container-profile">
                                 <Form>
@@ -126,9 +149,14 @@ export function ProfileView({ user }){
                                         {usernameErr && <p className="validation-err-text">{usernameErr}</p>}
                                     </Form.Label><br />
                                     <Form.Label>
-                                        Password <br />
+                                        New Password <br />
                                         <Form.Control type="password" value={password} onChange={e=>{ setPassword(e.target.value); }} />
                                         {passwordErr && <p className="validation-err-text">{passwordErr}</p>}
+                                    </Form.Label><br />
+                                    <Form.Label>
+                                       Confirm New Password <br />
+                                        <Form.Control type="password" value={confirmPassword} onChange={e=>{ setConfirmPassword(e.target.value); }} />
+                                        {confirmPasswordErr && <p className="validation-err-text">{confirmPasswordErr}</p>}
                                     </Form.Label><br />
                                     <Form.Label>
                                         Email <br />
@@ -147,12 +175,6 @@ export function ProfileView({ user }){
                                 </Form>
                             </div>
                         </div>
-                        {/* <footer>
-                            <div className="footer-container">
-                                <p>Background Image Credit:&nbsp;<a href="https://erikhollanderdesign.com/MOVIE-CLASSICS-COLLAGE">Erik Hollander Design</a></p>
-                                <p>&copy;Neubauer Development</p>
-                            </div>
-                        </footer> */}
                 </Col>
             </Row>
         </Container>
