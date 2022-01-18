@@ -6,7 +6,7 @@ import './profile-view.scss';
 import moment from 'moment';
 import propTypes from "prop-types";
 
-export function ProfileView({ user, updateUserState, onLogout }){
+export function ProfileView({ userData, updateUserState, onLogout }){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
@@ -84,10 +84,10 @@ export function ProfileView({ user, updateUserState, onLogout }){
     }
 
     function getUserData(username){
-        username = user;
+        username = userData;
         useEffect(()=>{
             let token = localStorage.getItem('token');
-            axios.get(`https://nickflixapi.herokuapp.com/user/${user}`, {
+            axios.get(`https://nickflixapi.herokuapp.com/user/${userData.username}`, {
                 headers:{ Authorization: `bearer ${token}` }
             }).then(response=>{
                 setUserInfo(response.data);
@@ -96,7 +96,8 @@ export function ProfileView({ user, updateUserState, onLogout }){
             });
         },[]);
     }
-    getUserData(user);
+    
+    getUserData(userData);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -104,7 +105,7 @@ export function ProfileView({ user, updateUserState, onLogout }){
         if(isReq){
             axios({
                 method: 'put', 
-                url: `https://nickflixapi.herokuapp.com/user/update/${user}`, 
+                url: `https://nickflixapi.herokuapp.com/user/update/${userData.username}`, 
                 headers: { Authorization: `bearer ${token}` },
                 data:{
                     username: username,
@@ -113,10 +114,10 @@ export function ProfileView({ user, updateUserState, onLogout }){
                     birthday: birthday
                 }
             }).then(response=>{
-                localStorage.setItem('user', response.data.username);
-                user = response.data.username;
-                setUserInfo(response.data);
-                updateUserState(user);
+                userData = response.data;
+                localStorage.setItem('user', userData.username);
+                setUserInfo(userData);
+                updateUserState(userData);
             }).catch(e=>{
                 console.log('error updating user info');
             });
@@ -124,7 +125,7 @@ export function ProfileView({ user, updateUserState, onLogout }){
     }
 
     function handleDelete(){
-        axios.delete(`https://nickflixapi.herokuapp.com/remove/${user}`, {
+        axios.delete(`https://nickflixapi.herokuapp.com/remove/${userData.username}`, {
             headers: { Authorization: `Bearer ${token}` }
         }).then(response => {
                 onLogout();
