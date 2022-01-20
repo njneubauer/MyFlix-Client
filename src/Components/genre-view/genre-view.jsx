@@ -7,7 +7,6 @@ import propTypes from "prop-types";
 export class GenreView extends React.Component {
     render() {
         const { genre, genreParam, onBackClick } = this.props;
-        console.log(genreParam)
         const genrefilter = genre.filter(g=>g.name === genreParam);
         const genreInfo = genrefilter.map(function(g){
             return (

@@ -51,16 +51,16 @@ export class MainView extends React.Component {
         }
     }
 
-    FavMoviesArray(response){
-        let data = response.data[0].favoriteMoviesInfo;
-        let favoriteMoviesData = data.map(d=>{
-            let rObj = {};
-                rObj["_id"] = d._id;
-                rObj["title"] = d.title;
-            return rObj;
-        });
-        return favoriteMoviesData;
-    }
+    // FavMoviesArray(response){
+    //     let data = response.data[0].favoriteMoviesInfo;
+    //     let favoriteMoviesData = data.map(d=>{
+    //         let rObj = {};
+    //             rObj["_id"] = d._id;
+    //             rObj["title"] = d.title;
+    //         return rObj;
+    //     });
+    //     return favoriteMoviesData;
+    // }
 
     // getfavoriteMovies(token){
     //     axios.get(`https://nickflixapi.herokuapp.com/user/${this.state.user}`, {
@@ -76,20 +76,19 @@ export class MainView extends React.Component {
 
     onLoggedIn(authData) {
         this.setState({
-            user: authData.user.username
-        });
-        this.setState({
+            user: authData.user.username,
             userData: authData.user
         });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.username);
-        console.log(this.state.userData);
         this.getMovies(authData.token);
-        // this.getfavoriteMovies(authData.token);
     }
 
     setUserState(userData){
-        this.setState({ userData });
+        this.setState({ 
+            userData: userData, 
+            user: userData.username 
+        });
     }
 
     onLogout(){
@@ -105,9 +104,10 @@ export class MainView extends React.Component {
         const { movies, user, userData, favoriteMovies } = this.state;
         
         const bgClass = (user) ? 'background-color' : 'background-img';
+
         return (
                 <Router>
-                    <NavBar onLogout={()=> this.onLogout()} user={user} />
+                    <NavBar onLogout={ ()=> this.onLogout() } user={user} />
                     <div id={`${bgClass}`}>
                     <Row id="row">
                             <Route exact path="/" render={()=>{                                                        
@@ -136,7 +136,7 @@ export class MainView extends React.Component {
                                     
                                 if (movies.length === 0) return <div className="main-view">Loading</div>;
 
-                                return <Col md={12}><MovieView favoriteMovies={favoriteMovies} user={user} userData={userData} setUserState={user=> this.setUserState(user)} movie={movies.find(m=> m._id === match.params.movieId)} onBackClick={() => history.goBack()} /></Col>
+                                return <Col md={12}><MovieView userData={userData} user={user} setUserState={userData=> this.setUserState(userData)} movie={movies.find(m=> m._id === match.params.movieId)} onBackClick={() => history.goBack()} /></Col>
                             }} />
 
                             <Route path="/directors/:name" render={({ match, history }) => {

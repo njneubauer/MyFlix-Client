@@ -7,29 +7,15 @@ import axios from "axios";
 
 
 export class MovieView extends React.Component {
-    constructor(props){
-        super(props);
-    }
-
-    componentDidmount(){
-        let accessToken = localStorage.getItem('token');
-        if(accessToken !== null){
-            this.props.setState({
-                favoriteMovies: localStorage.getItem('favoriteMovies')
-            });
-            
-        }
-    }
-
+    
     addToFavorites(){
-        let username = this.props.userData.username;
         let token = localStorage.getItem('token');
         axios({
                 method: 'post', 
-                url: `https://nickflixapi.herokuapp.com/${username}/addmovie/${this.props.movie.title}`,
+                url: `https://nickflixapi.herokuapp.com/${this.props.user}/addmovie/${this.props.movie.title}`,
                 headers: { Authorization: `bearer ${token}` }
         }).then(response =>{
-            console.log(response.data);
+            this.props.setUserState(response.data);
             localStorage.setItem('favoriteMovies', response.data.favoriteMovies);
         }).catch(err =>{
             console.error(err);
@@ -37,26 +23,23 @@ export class MovieView extends React.Component {
     }
 
     deleteFromFavorites(){
-        console.log(this.props)
+        console.log(this.props);
         let token = localStorage.getItem('token');
         axios({
             method: 'delete', 
-            url: `https://nickflixapi.herokuapp.com/${this.props.userData.username}/favorites/delete/${this.props.movie.title}`, 
+            url: `https://nickflixapi.herokuapp.com/${this.props.user}/favorites/delete/${this.props.movie.title}`, 
             headers: { Authorization: `bearer ${token}` }
         }).then(response =>{
-           this.props.setUserState(response.data);
+            this.props.setUserState(response.data);
+            localStorage.setItem('favoriteMovies', response.data.favoriteMovies);
         }).catch(err=>{
             console.error(err);
         });
     }
 
     render() {
-        const { movie, userData, onBackClick, favoriteMovies } = this.props;
-        
-        // let mArray = [];
-        // favoriteMovies.forEach(d=> mArray.push(d._id));
-        console.log(userData);
-       
+        const { movie, onBackClick, userData, user, setUserState, favoriteMovies } = this.props;
+
         const genres = movie.genreNames.map((genre)=><li key={genre.name}><Button as={Link} to={`/genres/${genre.name}`} className="primary">{genre.name}</Button></li>);
         
         const directorInfo = movie.directorInfo.map(function(d){
@@ -72,9 +55,9 @@ export class MovieView extends React.Component {
                 <div className="movie-view-container-1">
                     <div className="movie-item-1">
                         <img src={'data:image/png;base64, '+ movie.imageCode} alt="" />
-                        { userData.favoriteMovies.includes(movie._id)
+                        {  userData.favoriteMovies.includes(movie._id)
                             ? <Button className="favorites-img-btn" variant="danger" onClick={ ()=>this.deleteFromFavorites() }>Delete from Favorites</Button>
-                            : <Button className="favorites-img-btn" variant="warning" onClick={ ()=>this.addToFavorites() }>Add to Favorites</Button> 
+                            : <Button className="favorites-img-btn" variant="warning" onClick={ ()=>this.addToFavorites() }>Add to Favorites</Button>  
                         }
                     </div>
                     <div className="movie-item-2">

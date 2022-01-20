@@ -8,7 +8,6 @@ export class DirectorView extends React.Component {
     render() {
         const { director, dirParam, onBackClick } = this.props;
         const dirFilter = director.filter(d=>d.name === dirParam);
-        console.log(dirFilter);
         const directorInfo = dirFilter.map(function(d){
             return (
                <div className="director-info"> 

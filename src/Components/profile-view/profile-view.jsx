@@ -6,7 +6,7 @@ import './profile-view.scss';
 import moment from 'moment';
 import propTypes from "prop-types";
 
-export function ProfileView({ userData, updateUserState, onLogout }){
+export function ProfileView({ userData, user, setUserState, onLogout }){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
@@ -18,10 +18,8 @@ export function ProfileView({ userData, updateUserState, onLogout }){
     const [ confirmPasswordErr, setConfirmPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
     const [ birthdayErr, setBirthdayErr ] = useState('');
-    const [ userInfo, setUserInfo ] = useState({});
+    const [ userInfo, setUserInfo ] = useState('');
     
-    let token = localStorage.getItem('token');
-
     const validate = ()=>{
         let isReq = true;
         if(!username){
@@ -83,11 +81,10 @@ export function ProfileView({ userData, updateUserState, onLogout }){
         return isReq;
     }
 
-    function getUserData(username){
-        username = userData;
+    function getUserData(user){
         useEffect(()=>{
             let token = localStorage.getItem('token');
-            axios.get(`https://nickflixapi.herokuapp.com/user/${userData.username}`, {
+            axios.get(`https://nickflixapi.herokuapp.com/user/${user}`, {
                 headers:{ Authorization: `bearer ${token}` }
             }).then(response=>{
                 setUserInfo(response.data);
@@ -97,15 +94,16 @@ export function ProfileView({ userData, updateUserState, onLogout }){
         },[]);
     }
     
-    getUserData(userData);
-
+    getUserData(user)
+ 
     function handleSubmit(e) {
         e.preventDefault();
+        let token = localStorage.getItem('token');
         const isReq = validate();
         if(isReq){
             axios({
                 method: 'put', 
-                url: `https://nickflixapi.herokuapp.com/user/update/${userData.username}`, 
+                url: `https://nickflixapi.herokuapp.com/user/update/${user}`, 
                 headers: { Authorization: `bearer ${token}` },
                 data:{
                     username: username,
@@ -114,18 +112,17 @@ export function ProfileView({ userData, updateUserState, onLogout }){
                     birthday: birthday
                 }
             }).then(response=>{
-                userData = response.data;
-                localStorage.setItem('user', userData.username);
-                setUserInfo(userData);
-                updateUserState(userData);
-            }).catch(e=>{
-                console.log('error updating user info');
+                localStorage.setItem('user', user.username);
+                setUserInfo(response.data);
+                setUserState(response.data);
+            }).catch(err=>{
+                console.error(err);
             });
         };
     }
 
     function handleDelete(){
-        axios.delete(`https://nickflixapi.herokuapp.com/remove/${userData.username}`, {
+        axios.delete(`https://nickflixapi.herokuapp.com/remove/${user}`, {
             headers: { Authorization: `Bearer ${token}` }
         }).then(response => {
                 onLogout();
@@ -134,12 +131,11 @@ export function ProfileView({ userData, updateUserState, onLogout }){
                 console.error(err)
             });
     }
-
-
+   console.log(userInfo);
     return (
         <Container>
             <Row>
-                <Col md={5} className="d-flex align-items-center justify-content-center">
+                <Col md={5} className="d-flex flex-column align-items-center justify-content-center">
                     <div className="user-info-text">
                         <h1 className="user-info-item"><span>Account Information:</span></h1>
                         <h4 className="user-info-item"><span>Username: </span>{userInfo.username}</h4>
@@ -147,7 +143,26 @@ export function ProfileView({ userData, updateUserState, onLogout }){
                         { userInfo.birthday && 
                             <h4 className="user-info-item"><span>Birthday: </span>{moment.utc(userInfo.birthday).format('L')}</h4>
                         }
-                        
+                    </div>
+                    <div className="favorite-movies-list">
+                            <h2>Favorite Movies List</h2>
+                            <ul> 
+                                { userInfo && userInfo.favoriteMoviesInfo.map(m=><li key={m.title}><Button as={Link} to={`/movies/${m._id}`}>{m.title}</Button></li>)
+                                .sort(function(a,b){
+                                    let nameA = a.key;
+                                    let nameB = b.key; 
+                                    if (nameA < nameB) {
+                                        return -1;
+                                      }
+                                      if (nameA > nameB) {
+                                        return 1;
+                                      }
+                                    
+                                      // names must be equal
+                                      return 0;
+                                    })
+                                }
+                            </ul>
                     </div>
                 </Col>
                 <Col className="d-flex align-items-center justify-content-center" md={7}>
