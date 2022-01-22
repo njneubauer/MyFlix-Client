@@ -23,7 +23,6 @@ export class MovieView extends React.Component {
     }
 
     deleteFromFavorites(){
-        console.log(this.props);
         let token = localStorage.getItem('token');
         axios({
             method: 'delete', 
@@ -38,9 +37,9 @@ export class MovieView extends React.Component {
     }
 
     render() {
-        const { movie, onBackClick, userData, user, setUserState, favoriteMovies } = this.props;
+        const { movie, onBackClick, userData } = this.props;
 
-        const genres = movie.genreNames.map((genre)=><li key={genre.name}><Button as={Link} to={`/genres/${genre.name}`} className="primary">{genre.name}</Button></li>);
+        const genres = movie.genreNames.map((genre)=><li key={genre.name+'1'}><Button as={Link} to={`/genres/${genre.name}`} className="primary">{genre.name}</Button></li>);
         
         const directorInfo = movie.directorInfo.map(function(d){
             return (
@@ -98,6 +97,9 @@ MovieView.propTypes = {
         imageCode: propTypes.string.isRequired,
         directorInfo: propTypes.array.isRequired,
         genreNames: propTypes.array.isRequired
+    }).isRequired,
+    userData: propTypes.shape({
+        favoriteMovies: propTypes.string.isRequired
     }).isRequired,
     onBackClick: propTypes.func.isRequired
 };

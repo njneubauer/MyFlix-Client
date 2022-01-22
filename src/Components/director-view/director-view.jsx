@@ -11,8 +11,8 @@ export class DirectorView extends React.Component {
         const directorInfo = dirFilter.map(function(d){
             return (
                <div className="director-info"> 
-                    <h2 key={d.name}><strong>{d.name}</strong></h2>
-                    <p key={d.bio}>{d.bio}</p>
+                    <h2 key={d.name+'1'}><strong>{d.name}</strong></h2>
+                    <p key={d.bio+'1'}>{d.bio}</p>
                 </div>
             )
          });

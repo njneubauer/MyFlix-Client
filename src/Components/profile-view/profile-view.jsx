@@ -6,7 +6,7 @@ import './profile-view.scss';
 import moment from 'moment';
 import propTypes from "prop-types";
 
-export function ProfileView({ userData, user, setUserState, onLogout }){
+export function ProfileView({ user, setUserState, onLogout }){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
@@ -19,7 +19,7 @@ export function ProfileView({ userData, user, setUserState, onLogout }){
     const [ emailErr, setEmailErr ] = useState('');
     const [ birthdayErr, setBirthdayErr ] = useState('');
     const [ userInfo, setUserInfo ] = useState('');
-    
+
     const validate = ()=>{
         let isReq = true;
         if(!username){
@@ -81,20 +81,17 @@ export function ProfileView({ userData, user, setUserState, onLogout }){
         return isReq;
     }
 
-    function getUserData(user){
-        useEffect(()=>{
-            let token = localStorage.getItem('token');
-            axios.get(`https://nickflixapi.herokuapp.com/user/${user}`, {
-                headers:{ Authorization: `bearer ${token}` }
-            }).then(response=>{
-                setUserInfo(response.data);
-            }).catch(e=>{
-                console.log('error aquiring user info');
-            });
-        },[]);
-    }
-    
-    getUserData(user)
+    useEffect(()=>{
+        let token = localStorage.getItem('token');
+        let username = localStorage.getItem('user');
+        axios.get(`https://nickflixapi.herokuapp.com/user/${username}`, {
+            headers:{ Authorization: `bearer ${token}` }
+        }).then(response=>{
+            setUserInfo(response.data);
+        }).catch(e=>{
+            console.log('error aquiring user info');
+        });
+    },[user]);
  
     function handleSubmit(e) {
         e.preventDefault();
@@ -112,26 +109,29 @@ export function ProfileView({ userData, user, setUserState, onLogout }){
                     birthday: birthday
                 }
             }).then(response=>{
-                localStorage.setItem('user', user.username);
+                localStorage.setItem('user', response.data.username);
                 setUserInfo(response.data);
                 setUserState(response.data);
             }).catch(err=>{
                 console.error(err);
+                alert('Username or email already in use');
+
             });
         };
     }
 
     function handleDelete(){
+        let token = localStorage.getItem('token');
         axios.delete(`https://nickflixapi.herokuapp.com/remove/${user}`, {
             headers: { Authorization: `Bearer ${token}` }
         }).then(response => {
                 onLogout();
             })
             .catch(err => {
-                console.error(err)
+                console.error(err);
             });
     }
-   console.log(userInfo);
+
     return (
         <Container>
             <Row>
@@ -209,5 +209,7 @@ export function ProfileView({ userData, user, setUserState, onLogout }){
 }
 
 ProfileView.propTypes = {
+    onLogout: propTypes.func.isRequired,
+    setUserState: propTypes.func.isRequired
 }
  

@@ -71,7 +71,6 @@ export function RegistrationView(props){
         return isReq;
     }
 
-
     function handleSubmit(e) {
         e.preventDefault();
         const isReq = validate();

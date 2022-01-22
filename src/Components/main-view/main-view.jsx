@@ -19,7 +19,6 @@ export class MainView extends React.Component {
         super();
         this.state = {
             movies: [],
-            favoriteMovies: [],
             user: null,
             userData: null
         }
@@ -44,40 +43,15 @@ export class MainView extends React.Component {
         if(accessToken !== null){
             this.setState({
                 user: localStorage.getItem('user'),
-                favoriteMovies: localStorage.getItem('favoriteMovies')
             });
             this.getMovies(accessToken);
-            // this.getfavoriteMovies(accessToken);
         }
     }
 
-    // FavMoviesArray(response){
-    //     let data = response.data[0].favoriteMoviesInfo;
-    //     let favoriteMoviesData = data.map(d=>{
-    //         let rObj = {};
-    //             rObj["_id"] = d._id;
-    //             rObj["title"] = d.title;
-    //         return rObj;
-    //     });
-    //     return favoriteMoviesData;
-    // }
-
-    // getfavoriteMovies(token){
-    //     axios.get(`https://nickflixapi.herokuapp.com/user/${this.state.user}`, {
-    //         headers: { Authorization: `bearer ${token}` }
-    //     }).then(response =>{
-    //         this.FavMoviesArray(response);
-    //         this.setState({ favoriteMovies: favoriteMoviesData  });
-    //         localStorage.setItem('favoriteMovies', JSON.stringify( favoriteMoviesData ));
-    //     }).catch(err =>{
-    //         console.error(err);
-    //     });
-    // }
-
     onLoggedIn(authData) {
         this.setState({
-            user: authData.user.username,
-            userData: authData.user
+            userData: authData.user,
+            user: authData.user.username
         });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.username);
@@ -85,9 +59,9 @@ export class MainView extends React.Component {
     }
 
     setUserState(userData){
-        this.setState({ 
-            userData: userData, 
-            user: userData.username 
+        this.setState({
+            userData: userData,
+            user: userData.username
         });
     }
 
@@ -101,7 +75,7 @@ export class MainView extends React.Component {
     }
 
     render(){
-        const { movies, user, userData, favoriteMovies } = this.state;
+        const { movies, user, userData } = this.state;
         
         const bgClass = (user) ? 'background-color' : 'background-img';
 
