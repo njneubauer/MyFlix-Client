@@ -48,7 +48,7 @@ export function LoginView(props) {
                 const data = response.data;
                 props.onLoggedIn(data);
             }).catch(err=>{
-                console.error(err);
+                alert('Invalid Username or Password')
             });
         }
     };

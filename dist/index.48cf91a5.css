@@ -222,6 +222,77 @@ footer p {
   margin-top: 15px;
   margin-right: 15px;
 }
+#background-img {
+  background-image: url("movie_wallpaper.47e0ab08.jpg");
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-height: 950px;
+}
+
+#background-color {
+  background: linear-gradient(180deg, black, #464646);
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-height: 950px;
+  height: auto;
+}
+
+#row {
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  margin: 0;
+  height: 70px;
+}
+
+nav .nav-container {
+  margin: 0px 0 15px 0;
+  height: 50px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+.navbar-nav h1 {
+  font-family: "Shizuru", cursive;
+  font-size: 2em;
+  color: white;
+}
+
+.links {
+  display: inline-flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+ul li {
+  margin: 0 10px;
+}
+.genre-view {
+  color: white;
+}
+
+.genre-view-container-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+}
+
+.genre-item-1 {
+  width: 800px;
+  height: auto;
+}
+
+.genre-item-1 p, h2 {
+  text-align: left;
+}
 .profile-view {
   position: absolute;
   margin: 0;
@@ -275,77 +346,6 @@ footer p {
 span {
   font-weight: bold;
   color: white;
-}
-.genre-view {
-  color: white;
-}
-
-.genre-view-container-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  color: white;
-}
-
-.genre-item-1 {
-  width: 800px;
-  height: auto;
-}
-
-.genre-item-1 p, h2 {
-  text-align: left;
-}
-#background-img {
-  background-image: url("movie_wallpaper.47e0ab08.jpg");
-  margin: 0;
-  padding: 0;
-  border: none;
-  min-height: 950px;
-}
-
-#background-color {
-  background: linear-gradient(180deg, black, #464646);
-  margin: 0;
-  padding: 0;
-  border: none;
-  min-height: 950px;
-  height: auto;
-}
-
-#row {
-  background-color: rgba(0, 0, 0, 0);
-  margin: 0;
-  padding: 0;
-}
-
-nav {
-  margin: 0;
-  height: 70px;
-}
-
-nav .nav-container {
-  margin: 0px 0 15px 0;
-  height: 50px;
-}
-
-nav ul {
-  list-style: none;
-}
-
-.navbar-nav h1 {
-  font-family: "Shizuru", cursive;
-  font-size: 2em;
-  color: white;
-}
-
-.links {
-  display: inline-flex;
-  flex-direction: row;
-  margin: 0;
-}
-
-ul li {
-  margin: 0 10px;
 }
 #container {
   padding: 0;

@@ -983,7 +983,7 @@ _reactDomDefault.default.render(/*#__PURE__*/ _reactDefault.default.createElemen
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-dom":"gkWJK","./Components/main-view/main-view.jsx":"hMePG","react-bootstrap/Container":"2PRIq","./index.scss":"jUTZ8","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"8xIwr":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-dom":"gkWJK","./Components/main-view/main-view.jsx":"hMePG","./index.scss":"jUTZ8","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","react-bootstrap/Container":"2PRIq"}],"8xIwr":[function(require,module,exports) {
 'use strict';
 module.exports = require('./cjs/react-jsx-runtime.development.js');
 
@@ -23040,7 +23040,7 @@ class MainView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-router-dom":"cpyQW","../movie-card/movie-card.jsx":"lW8hY","../movie-view/movie-view.jsx":"gBJ7p","../director-view/director-view.jsx":"dMXbb","../login-view/login-view.jsx":"5oeCQ","../registration-view/registration-view.jsx":"5dVEM","../profile-view/profile-view.jsx":"1yPk7","../genre-view/genre-view":"airuI","../common/navbar.jsx":"ieSJV","react-bootstrap":"h2YVd","./main-view.scss":"gOtb6","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"iYoWk":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-router-dom":"cpyQW","../movie-card/movie-card.jsx":"lW8hY","../movie-view/movie-view.jsx":"gBJ7p","../director-view/director-view.jsx":"dMXbb","../login-view/login-view.jsx":"5oeCQ","../registration-view/registration-view.jsx":"5dVEM","../common/navbar.jsx":"ieSJV","react-bootstrap":"h2YVd","./main-view.scss":"gOtb6","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","../genre-view/genre-view":"airuI","../profile-view/profile-view.jsx":"1yPk7"}],"iYoWk":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"3QmO2"}],"3QmO2":[function(require,module,exports) {
@@ -28785,7 +28785,7 @@ function LoginView(props) {
             const data = response.data;
             props.onLoggedIn(data);
         }).catch((err)=>{
-            console.error(err);
+            alert('Invalid Username or Password');
         });
     };
     return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
@@ -40694,7 +40694,288 @@ $RefreshReg$(_c, "RegistrationView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-router-dom":"cpyQW","react-bootstrap":"h2YVd","./registration-view.scss":"jLIlf","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"jLIlf":[function() {},{}],"1yPk7":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-router-dom":"cpyQW","react-bootstrap":"h2YVd","./registration-view.scss":"jLIlf","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"jLIlf":[function() {},{}],"ieSJV":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$027e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$027e.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "NavBar", ()=>NavBar
+);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _reactRouterDom = require("react-router-dom");
+function NavBar(props) {
+    const renderNavButtons = ()=>{
+        return props.user === null ? /*#__PURE__*/ _jsxRuntime.jsx("div", {
+            __source: {
+                fileName: "src/Components/common/navbar.jsx",
+                lineNumber: 9
+            },
+            __self: this
+        }) : /*#__PURE__*/ _jsxRuntime.jsx("div", {
+            __source: {
+                fileName: "src/Components/common/navbar.jsx",
+                lineNumber: 10
+            },
+            __self: this,
+            children: /*#__PURE__*/ _jsxRuntime.jsxs("ul", {
+                className: "links",
+                __source: {
+                    fileName: "src/Components/common/navbar.jsx",
+                    lineNumber: 11
+                },
+                __self: this,
+                children: [
+                    /*#__PURE__*/ _jsxRuntime.jsx("li", {
+                        __source: {
+                            fileName: "src/Components/common/navbar.jsx",
+                            lineNumber: 12
+                        },
+                        __self: this,
+                        children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                            as: _reactRouterDom.Link,
+                            to: "/profile",
+                            __source: {
+                                fileName: "src/Components/common/navbar.jsx",
+                                lineNumber: 12
+                            },
+                            __self: this,
+                            children: "Profile"
+                        })
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsx("li", {
+                        __source: {
+                            fileName: "src/Components/common/navbar.jsx",
+                            lineNumber: 13
+                        },
+                        __self: this,
+                        children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                            className: "btn-logout",
+                            variant: "danger",
+                            onClick: ()=>props.onLogout()
+                            ,
+                            __source: {
+                                fileName: "src/Components/common/navbar.jsx",
+                                lineNumber: 13
+                            },
+                            __self: this,
+                            children: "Logout"
+                        })
+                    })
+                ]
+            })
+        });
+    };
+    return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
+        className: "py-0",
+        bg: "dark",
+        variant: "dark",
+        sticky: "top",
+        __source: {
+            fileName: "src/Components/common/navbar.jsx",
+            lineNumber: 22
+        },
+        __self: this,
+        children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
+            className: "nav-container",
+            fluid: true,
+            __source: {
+                fileName: "src/Components/common/navbar.jsx",
+                lineNumber: 23
+            },
+            __self: this,
+            children: [
+                /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
+                    __source: {
+                        fileName: "src/Components/common/navbar.jsx",
+                        lineNumber: 24
+                    },
+                    __self: this,
+                    children: [
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Brand, {
+                            as: _reactRouterDom.Link,
+                            to: "/",
+                            align: "top",
+                            __source: {
+                                fileName: "src/Components/common/navbar.jsx",
+                                lineNumber: 25
+                            },
+                            __self: this,
+                            children: /*#__PURE__*/ _jsxRuntime.jsx("h1", {
+                                __source: {
+                                    fileName: "src/Components/common/navbar.jsx",
+                                    lineNumber: 26
+                                },
+                                __self: this,
+                                children: "Nickflix"
+                            })
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Toggle, {
+                            "aria-controls": "responsive-navbar-nav",
+                            __source: {
+                                fileName: "src/Components/common/navbar.jsx",
+                                lineNumber: 28
+                            },
+                            __self: this
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav, {
+                    __source: {
+                        fileName: "src/Components/common/navbar.jsx",
+                        lineNumber: 30
+                    },
+                    __self: this,
+                    children: renderNavButtons()
+                })
+            ]
+        })
+    }));
+}
+_c = NavBar;
+var _c;
+$RefreshReg$(_c, "NavBar");
+
+  $parcel$ReactRefreshHelpers$027e.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","react-bootstrap/Button":"9CzHT","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"gOtb6":[function() {},{}],"airuI":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$d4c5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$d4c5.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "GenreView", ()=>GenreView
+) // genreView.propTypes = {
+ //     movie: propTypes.shape({
+ //         title: propTypes.string.isRequired,
+ //         plot: propTypes.string.isRequired,
+ //         imageCode: propTypes.string.isRequired,
+ //         genreInfo: propTypes.array.isRequired,
+ //         genreNames: propTypes.array.isRequired
+ //     }).isRequired,
+ //     onBackClick: propTypes.func.isRequired
+ // };
+;
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _genreViewScss = require("./genre-view.scss");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+class GenreView extends _reactDefault.default.Component {
+    render() {
+        const { genre , genreParam , onBackClick  } = this.props;
+        const genrefilter = genre.filter((g)=>g.name === genreParam
+        );
+        const genreInfo = genrefilter.map(function(g) {
+            return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
+                className: "genre-info",
+                __source: {
+                    fileName: "src/Components/genre-view/genre-view.jsx",
+                    lineNumber: 13
+                },
+                __self: this,
+                children: [
+                    /*#__PURE__*/ _jsxRuntime.jsx("h2", {
+                        __source: {
+                            fileName: "src/Components/genre-view/genre-view.jsx",
+                            lineNumber: 14
+                        },
+                        __self: this,
+                        children: /*#__PURE__*/ _jsxRuntime.jsx("strong", {
+                            __source: {
+                                fileName: "src/Components/genre-view/genre-view.jsx",
+                                lineNumber: 14
+                            },
+                            __self: this,
+                            children: g.name
+                        })
+                    }, g.name),
+                    /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                        __source: {
+                            fileName: "src/Components/genre-view/genre-view.jsx",
+                            lineNumber: 15
+                        },
+                        __self: this,
+                        children: g.description
+                    }, g.description)
+                ]
+            }));
+        });
+        return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+            className: "genre-view",
+            __source: {
+                fileName: "src/Components/genre-view/genre-view.jsx",
+                lineNumber: 21
+            },
+            __self: this,
+            children: /*#__PURE__*/ _jsxRuntime.jsx("div", {
+                className: "genre-view-container-1",
+                __source: {
+                    fileName: "src/Components/genre-view/genre-view.jsx",
+                    lineNumber: 22
+                },
+                __self: this,
+                children: /*#__PURE__*/ _jsxRuntime.jsxs("div", {
+                    className: "genre-item-1",
+                    __source: {
+                        fileName: "src/Components/genre-view/genre-view.jsx",
+                        lineNumber: 23
+                    },
+                    __self: this,
+                    children: [
+                        /*#__PURE__*/ _jsxRuntime.jsx("h1", {
+                            className: "label",
+                            __source: {
+                                fileName: "src/Components/genre-view/genre-view.jsx",
+                                lineNumber: 24
+                            },
+                            __self: this,
+                            children: "Genre Information"
+                        }),
+                        genreInfo,
+                        /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                            id: "btn-genre-back",
+                            className: "primary movie-img-btn",
+                            onClick: ()=>{
+                                onBackClick(null);
+                            },
+                            __source: {
+                                fileName: "src/Components/genre-view/genre-view.jsx",
+                                lineNumber: 26
+                            },
+                            __self: this,
+                            children: "Back"
+                        })
+                    ]
+                })
+            })
+        }));
+    }
+}
+
+  $parcel$ReactRefreshHelpers$d4c5.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap/Button":"9CzHT","./genre-view.scss":"aVdhU","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"aVdhU":[function() {},{}],"1yPk7":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$30fa = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -41296,7 +41577,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-router-dom":"cpyQW","react-bootstrap":"h2YVd","./profile-view.scss":"6gWLW","moment":"5Keig","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"6gWLW":[function() {},{}],"5Keig":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-router-dom":"cpyQW","react-bootstrap":"h2YVd","./profile-view.scss":"6gWLW","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","moment":"5Keig"}],"6gWLW":[function() {},{}],"5Keig":[function(require,module,exports) {
 (function(global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.moment = factory();
 })(this, function() {
@@ -45018,287 +45299,6 @@ $RefreshReg$(_c, "ProfileView");
     return hooks;
 });
 
-},{}],"airuI":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$d4c5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$d4c5.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "GenreView", ()=>GenreView
-) // genreView.propTypes = {
- //     movie: propTypes.shape({
- //         title: propTypes.string.isRequired,
- //         plot: propTypes.string.isRequired,
- //         imageCode: propTypes.string.isRequired,
- //         genreInfo: propTypes.array.isRequired,
- //         genreNames: propTypes.array.isRequired
- //     }).isRequired,
- //     onBackClick: propTypes.func.isRequired
- // };
-;
-var _jsxRuntime = require("react/jsx-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _genreViewScss = require("./genre-view.scss");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-class GenreView extends _reactDefault.default.Component {
-    render() {
-        const { genre , genreParam , onBackClick  } = this.props;
-        const genrefilter = genre.filter((g)=>g.name === genreParam
-        );
-        const genreInfo = genrefilter.map(function(g) {
-            return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
-                className: "genre-info",
-                __source: {
-                    fileName: "src/Components/genre-view/genre-view.jsx",
-                    lineNumber: 13
-                },
-                __self: this,
-                children: [
-                    /*#__PURE__*/ _jsxRuntime.jsx("h2", {
-                        __source: {
-                            fileName: "src/Components/genre-view/genre-view.jsx",
-                            lineNumber: 14
-                        },
-                        __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx("strong", {
-                            __source: {
-                                fileName: "src/Components/genre-view/genre-view.jsx",
-                                lineNumber: 14
-                            },
-                            __self: this,
-                            children: g.name
-                        })
-                    }, g.name),
-                    /*#__PURE__*/ _jsxRuntime.jsx("p", {
-                        __source: {
-                            fileName: "src/Components/genre-view/genre-view.jsx",
-                            lineNumber: 15
-                        },
-                        __self: this,
-                        children: g.description
-                    }, g.description)
-                ]
-            }));
-        });
-        return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
-            className: "genre-view",
-            __source: {
-                fileName: "src/Components/genre-view/genre-view.jsx",
-                lineNumber: 21
-            },
-            __self: this,
-            children: /*#__PURE__*/ _jsxRuntime.jsx("div", {
-                className: "genre-view-container-1",
-                __source: {
-                    fileName: "src/Components/genre-view/genre-view.jsx",
-                    lineNumber: 22
-                },
-                __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsxs("div", {
-                    className: "genre-item-1",
-                    __source: {
-                        fileName: "src/Components/genre-view/genre-view.jsx",
-                        lineNumber: 23
-                    },
-                    __self: this,
-                    children: [
-                        /*#__PURE__*/ _jsxRuntime.jsx("h1", {
-                            className: "label",
-                            __source: {
-                                fileName: "src/Components/genre-view/genre-view.jsx",
-                                lineNumber: 24
-                            },
-                            __self: this,
-                            children: "Genre Information"
-                        }),
-                        genreInfo,
-                        /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
-                            id: "btn-genre-back",
-                            className: "primary movie-img-btn",
-                            onClick: ()=>{
-                                onBackClick(null);
-                            },
-                            __source: {
-                                fileName: "src/Components/genre-view/genre-view.jsx",
-                                lineNumber: 26
-                            },
-                            __self: this,
-                            children: "Back"
-                        })
-                    ]
-                })
-            })
-        }));
-    }
-}
-
-  $parcel$ReactRefreshHelpers$d4c5.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap/Button":"9CzHT","./genre-view.scss":"aVdhU","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"aVdhU":[function() {},{}],"ieSJV":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$027e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$027e.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "NavBar", ()=>NavBar
-);
-var _jsxRuntime = require("react/jsx-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactBootstrap = require("react-bootstrap");
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _reactRouterDom = require("react-router-dom");
-function NavBar(props) {
-    const renderNavButtons = ()=>{
-        return props.user === null ? /*#__PURE__*/ _jsxRuntime.jsx("div", {
-            __source: {
-                fileName: "src/Components/common/navbar.jsx",
-                lineNumber: 9
-            },
-            __self: this
-        }) : /*#__PURE__*/ _jsxRuntime.jsx("div", {
-            __source: {
-                fileName: "src/Components/common/navbar.jsx",
-                lineNumber: 10
-            },
-            __self: this,
-            children: /*#__PURE__*/ _jsxRuntime.jsxs("ul", {
-                className: "links",
-                __source: {
-                    fileName: "src/Components/common/navbar.jsx",
-                    lineNumber: 11
-                },
-                __self: this,
-                children: [
-                    /*#__PURE__*/ _jsxRuntime.jsx("li", {
-                        __source: {
-                            fileName: "src/Components/common/navbar.jsx",
-                            lineNumber: 12
-                        },
-                        __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                            as: _reactRouterDom.Link,
-                            to: "/profile",
-                            __source: {
-                                fileName: "src/Components/common/navbar.jsx",
-                                lineNumber: 12
-                            },
-                            __self: this,
-                            children: "Profile"
-                        })
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx("li", {
-                        __source: {
-                            fileName: "src/Components/common/navbar.jsx",
-                            lineNumber: 13
-                        },
-                        __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
-                            className: "btn-logout",
-                            variant: "danger",
-                            onClick: ()=>props.onLogout()
-                            ,
-                            __source: {
-                                fileName: "src/Components/common/navbar.jsx",
-                                lineNumber: 13
-                            },
-                            __self: this,
-                            children: "Logout"
-                        })
-                    })
-                ]
-            })
-        });
-    };
-    return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
-        className: "py-0",
-        bg: "dark",
-        variant: "dark",
-        sticky: "top",
-        __source: {
-            fileName: "src/Components/common/navbar.jsx",
-            lineNumber: 22
-        },
-        __self: this,
-        children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
-            className: "nav-container",
-            fluid: true,
-            __source: {
-                fileName: "src/Components/common/navbar.jsx",
-                lineNumber: 23
-            },
-            __self: this,
-            children: [
-                /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
-                    __source: {
-                        fileName: "src/Components/common/navbar.jsx",
-                        lineNumber: 24
-                    },
-                    __self: this,
-                    children: [
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Brand, {
-                            as: _reactRouterDom.Link,
-                            to: "/",
-                            align: "top",
-                            __source: {
-                                fileName: "src/Components/common/navbar.jsx",
-                                lineNumber: 25
-                            },
-                            __self: this,
-                            children: /*#__PURE__*/ _jsxRuntime.jsx("h1", {
-                                __source: {
-                                    fileName: "src/Components/common/navbar.jsx",
-                                    lineNumber: 26
-                                },
-                                __self: this,
-                                children: "Nickflix"
-                            })
-                        }),
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Toggle, {
-                            "aria-controls": "responsive-navbar-nav",
-                            __source: {
-                                fileName: "src/Components/common/navbar.jsx",
-                                lineNumber: 28
-                            },
-                            __self: this
-                        })
-                    ]
-                }),
-                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav, {
-                    __source: {
-                        fileName: "src/Components/common/navbar.jsx",
-                        lineNumber: 30
-                    },
-                    __self: this,
-                    children: renderNavButtons()
-                })
-            ]
-        })
-    }));
-}
-_c = NavBar;
-var _c;
-$RefreshReg$(_c, "NavBar");
-
-  $parcel$ReactRefreshHelpers$027e.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","react-bootstrap/Button":"9CzHT","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"gOtb6":[function() {},{}],"jUTZ8":[function() {},{}]},["2rAXy","6a0zu","dLPEP"], "dLPEP", "parcelRequireaec4")
+},{}],"jUTZ8":[function() {},{}]},["2rAXy","6a0zu","dLPEP"], "dLPEP", "parcelRequireaec4")
 
 //# sourceMappingURL=index.6701a6e1.js.map
