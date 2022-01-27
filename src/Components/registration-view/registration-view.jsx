@@ -98,17 +98,17 @@ export function RegistrationView(props){
                             <Form.Label className="form-title">Sign Up!</Form.Label>
                             <Form.Label>
                                 Username <br />
-                                <Form.Control type="text" value={username} onChange={e=>{ setUsername(e.target.value); }} />
+                                <Form.Control type="text" className='login-registration-input' value={username} onChange={e=>{ setUsername(e.target.value); }} />
                                 {usernameErr && <p className="validation-err-text">{usernameErr}</p>}
                             </Form.Label><br />
                             <Form.Label>
                                 Password <br />
-                                <Form.Control type="password" value={password} onChange={e=>{ setPassword(e.target.value); }} />
+                                <Form.Control type="password" className='login-registration-input'  value={password} onChange={e=>{ setPassword(e.target.value); }} />
                                 {passwordErr && <p className="validation-err-text">{passwordErr}</p>}
                             </Form.Label><br />
                             <Form.Label>
                                 Email <br />
-                                <Form.Control type="email" value={email} onChange={e=>{ setEmail(e.target.value); }} required/>
+                                <Form.Control type="email" className='login-registration-input'  value={email} onChange={e=>{ setEmail(e.target.value); }} required/>
                                 {emailErr && <p className="validation-err-text">{emailErr}</p>}
                             </Form.Label><br />
                             <Form.Label>

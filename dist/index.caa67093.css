@@ -1,3 +1,16 @@
+#container {
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+.app-container {
+  margin: 0;
+}
+
+div {
+  margin: 12px 0px 12px 0px;
+}
 .movie-card {
   cursor: pointer;
 }
@@ -154,6 +167,9 @@ img {
   background: #272727 !important;
   border-color: #444444 !important;
   color: white !important;
+}
+
+.login-registration-input {
   width: 110% !important;
 }
 
@@ -338,7 +354,7 @@ nav ul {
   color: white;
 }
 
-.links {
+.nav-links {
   display: inline-flex;
   flex-direction: row;
   margin: 0;
@@ -347,17 +363,4 @@ nav ul {
 ul li {
   margin: 0 10px;
 }
-#container {
-  padding: 0;
-  margin: 0;
-  color: white;
-}
-
-.app-container {
-  margin: 0;
-}
-
-div {
-  margin: 12px 0px 12px 0px;
-}
-/*# sourceMappingURL=index.48cf91a5.css.map */
+/*# sourceMappingURL=index.caa67093.css.map */

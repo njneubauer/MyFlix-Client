@@ -45,8 +45,7 @@ export function LoginView(props) {
                 username: username,
                 password: password
             }).then(response=>{
-                const data = response.data;
-                props.onLoggedIn(data);
+                props.onLoggedIn(response.data);
             }).catch(err=>{
                 console.error(err);
                 alert('Invalid Username or Password');
@@ -63,12 +62,12 @@ export function LoginView(props) {
                         <Form.Group>
                         <Form.Label>
                             Username
-                            <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />    
+                            <Form.Control type="text" className="login-registration-input" value={username} onChange={e => setUsername(e.target.value)} />    
                             {usernameErr && <p className="validation-err-text">{usernameErr}</p>}
                         </Form.Label><br />
                         <Form.Label>
                             Password
-                            <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                            <Form.Control type="password" className="login-registration-input" value={password} onChange={e => setPassword(e.target.value)} />
                             {passwordErr && <p className="validation-err-text">{passwordErr}</p>}
                         </Form.Label>
                         </Form.Group>

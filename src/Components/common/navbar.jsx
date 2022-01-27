@@ -8,7 +8,7 @@ export function NavBar(props){
         return props.user === null ? (
             <div></div>
         ) : (<div>
-                <ul className='links'>
+                <ul className='nav-links'>
                     <li><Nav.Link as={Link} to="/">Movies</Nav.Link></li>
                     <li><Nav.Link as={Link} to="/profile">Profile</Nav.Link></li>
                     <li><Button className="btn-logout" variant="danger" onClick={()=>props.onLogout()}>Logout</Button></li>
