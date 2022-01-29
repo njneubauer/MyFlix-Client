@@ -46848,7 +46848,8 @@ function NavBar(props) {
         });
     };
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
-        className: "py-0",
+        className: "my-0 py-0",
+        expand: "sm",
         bg: "dark",
         variant: "dark",
         sticky: "top",
@@ -46858,7 +46859,7 @@ function NavBar(props) {
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
-            className: "nav-container",
+            className: "my-0 py-0",
             fluid: true,
             __source: {
                 fileName: "src/components/common/navbar.jsx",
@@ -46866,31 +46867,32 @@ function NavBar(props) {
             },
             __self: this,
             children: [
-                /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Brand, {
+                    as: _reactRouterDom.Link,
+                    to: "/",
+                    align: "top",
                     __source: {
                         fileName: "src/components/common/navbar.jsx",
                         lineNumber: 25
                     },
                     __self: this,
+                    children: /*#__PURE__*/ _jsxRuntime.jsx("h1", {
+                        __source: {
+                            fileName: "src/components/common/navbar.jsx",
+                            lineNumber: 26
+                        },
+                        __self: this,
+                        children: "Nickflix"
+                    })
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
+                    className: "my-0 py-0",
+                    __source: {
+                        fileName: "src/components/common/navbar.jsx",
+                        lineNumber: 28
+                    },
+                    __self: this,
                     children: [
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Brand, {
-                            as: _reactRouterDom.Link,
-                            to: "/",
-                            align: "top",
-                            __source: {
-                                fileName: "src/components/common/navbar.jsx",
-                                lineNumber: 26
-                            },
-                            __self: this,
-                            children: /*#__PURE__*/ _jsxRuntime.jsx("h1", {
-                                __source: {
-                                    fileName: "src/components/common/navbar.jsx",
-                                    lineNumber: 27
-                                },
-                                __self: this,
-                                children: "Nickflix"
-                            })
-                        }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Toggle, {
                             "aria-controls": "responsive-navbar-nav",
                             __source: {
@@ -46898,16 +46900,25 @@ function NavBar(props) {
                                 lineNumber: 29
                             },
                             __self: this
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Collapse, {
+                            id: "responsive-navbar-nav",
+                            __source: {
+                                fileName: "src/components/common/navbar.jsx",
+                                lineNumber: 30
+                            },
+                            __self: this,
+                            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav, {
+                                className: "me-auto",
+                                __source: {
+                                    fileName: "src/components/common/navbar.jsx",
+                                    lineNumber: 31
+                                },
+                                __self: this,
+                                children: renderNavButtons()
+                            })
                         })
                     ]
-                }),
-                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav, {
-                    __source: {
-                        fileName: "src/components/common/navbar.jsx",
-                        lineNumber: 31
-                    },
-                    __self: this,
-                    children: renderNavButtons()
                 })
             ]
         })

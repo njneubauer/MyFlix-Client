@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container} from 'react-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
@@ -20,16 +20,18 @@ export function NavBar(props){
     };
 
     return (
-        <Navbar className="py-0" bg="dark" variant="dark" sticky="top">
-            <Container className='nav-container' fluid>
-                <Nav>
-                    <Navbar.Brand as={Link} to='/' align="top">
-                        <h1>Nickflix</h1>
-                    </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                </Nav>
-                <Nav>
-                    {renderNavButtons()}
+        <Navbar className="my-0 py-0" expand="sm" bg="dark" variant="dark" sticky="top">
+            <Container className="my-0 py-0" fluid>
+                <Navbar.Brand as={Link} to='/' align="top">
+                    <h1>Nickflix</h1>
+                </Navbar.Brand>
+                <Nav className="my-0 py-0">
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className='me-auto'>
+                        {renderNavButtons()}
+                    </Nav>
+                </Navbar.Collapse>
                 </Nav>
             </Container>
         </Navbar>

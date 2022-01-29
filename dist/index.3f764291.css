@@ -339,19 +339,15 @@ span {
 
 nav {
   margin: 0;
-  height: 70px;
-}
-
-nav .nav-container {
-  margin: 0 0 15px 0;
-  height: 50px;
+  max-height: 70px;
 }
 
 nav ul {
   list-style: none;
 }
 
-.navbar-nav h1 {
+.navbar-brand {
+  margin: 0;
   font-family: "Shizuru", cursive;
   font-size: 2em;
   color: white;
@@ -360,7 +356,6 @@ nav ul {
 .nav-links {
   display: inline-flex;
   flex-direction: row;
-  margin: 0;
 }
 
 ul li {
