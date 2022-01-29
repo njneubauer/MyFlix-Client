@@ -26,8 +26,8 @@ $background-color: linear-gradient(180deg, black, rgb(70, 70, 70));
 }
 
 nav {
-    margin: 0;
-    max-height: 70px;
+    // margin: 0;
+    // max-height: 70px;
 }
 
 // nav .nav-container {
@@ -39,21 +39,21 @@ nav ul {
     list-style: none;
 }
 
-.navbar-brand {
-    margin: 0;
+.navbar-brand h1 {
+    // margin: 0;
     font-family: 'Shizuru', cursive;
-    font-size: 2em;
+    // font-size: 2em;
     color: white;
 }
 
-.nav-links {
-    display: inline-flex;
-    flex-direction: row;
-}
+// .nav-links {
+//     display: inline-flex;
+//     flex-direction: row;
+// }
 
-ul li {
-    margin: 0 10px;
-}
+// ul li {
+//     margin: 0 10px;
+// }
 
 
 

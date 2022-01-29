@@ -46770,84 +46770,46 @@ var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _reactRouterDom = require("react-router-dom");
 function NavBar(props) {
     const renderNavButtons = ()=>{
-        return props.user === null ? /*#__PURE__*/ _jsxRuntime.jsx("div", {
-            __source: {
-                fileName: "src/components/common/navbar.jsx",
-                lineNumber: 9
-            },
-            __self: this
-        }) : /*#__PURE__*/ _jsxRuntime.jsx("div", {
-            __source: {
-                fileName: "src/components/common/navbar.jsx",
-                lineNumber: 10
-            },
-            __self: this,
-            children: /*#__PURE__*/ _jsxRuntime.jsxs("ul", {
-                className: "nav-links",
-                __source: {
-                    fileName: "src/components/common/navbar.jsx",
-                    lineNumber: 11
-                },
-                __self: this,
-                children: [
-                    /*#__PURE__*/ _jsxRuntime.jsx("li", {
-                        __source: {
-                            fileName: "src/components/common/navbar.jsx",
-                            lineNumber: 12
-                        },
-                        __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                            as: _reactRouterDom.Link,
-                            to: "/",
-                            __source: {
-                                fileName: "src/components/common/navbar.jsx",
-                                lineNumber: 12
-                            },
-                            __self: this,
-                            children: "Movies"
-                        })
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx("li", {
-                        __source: {
-                            fileName: "src/components/common/navbar.jsx",
-                            lineNumber: 13
-                        },
-                        __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                            as: _reactRouterDom.Link,
-                            to: "/profile",
-                            __source: {
-                                fileName: "src/components/common/navbar.jsx",
-                                lineNumber: 13
-                            },
-                            __self: this,
-                            children: "Profile"
-                        })
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx("li", {
-                        __source: {
-                            fileName: "src/components/common/navbar.jsx",
-                            lineNumber: 14
-                        },
-                        __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
-                            className: "btn-logout",
-                            variant: "danger",
-                            onClick: ()=>props.onLogout()
-                            ,
-                            __source: {
-                                fileName: "src/components/common/navbar.jsx",
-                                lineNumber: 14
-                            },
-                            __self: this,
-                            children: "Logout"
-                        })
-                    })
-                ]
-            })
+        return props.user === null ? /*#__PURE__*/ _jsxRuntime.jsx(_jsxRuntime.Fragment, {
+        }) : /*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
+            children: [
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                    as: _reactRouterDom.Link,
+                    to: "/",
+                    __source: {
+                        fileName: "src/components/common/navbar.jsx",
+                        lineNumber: 11
+                    },
+                    __self: this,
+                    children: "Movies"
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                    as: _reactRouterDom.Link,
+                    to: "/profile",
+                    __source: {
+                        fileName: "src/components/common/navbar.jsx",
+                        lineNumber: 12
+                    },
+                    __self: this,
+                    children: "Profile"
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                    className: "btn-logout",
+                    variant: "danger",
+                    onClick: ()=>props.onLogout()
+                    ,
+                    __source: {
+                        fileName: "src/components/common/navbar.jsx",
+                        lineNumber: 13
+                    },
+                    __self: this,
+                    children: "Logout"
+                })
+            ]
         });
     };
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
+        collapseOnSelect: true,
         className: "my-0 py-0",
         expand: "sm",
         bg: "dark",
@@ -46855,7 +46817,7 @@ function NavBar(props) {
         sticky: "top",
         __source: {
             fileName: "src/components/common/navbar.jsx",
-            lineNumber: 23
+            lineNumber: 20
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
@@ -46863,7 +46825,7 @@ function NavBar(props) {
             fluid: true,
             __source: {
                 fileName: "src/components/common/navbar.jsx",
-                lineNumber: 24
+                lineNumber: 21
             },
             __self: this,
             children: [
@@ -46873,52 +46835,80 @@ function NavBar(props) {
                     align: "top",
                     __source: {
                         fileName: "src/components/common/navbar.jsx",
-                        lineNumber: 25
+                        lineNumber: 22
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/components/common/navbar.jsx",
-                            lineNumber: 26
+                            lineNumber: 23
                         },
                         __self: this,
                         children: "Nickflix"
                     })
                 }),
-                /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
-                    className: "my-0 py-0",
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Toggle, {
+                    "aria-controls": "responsive-navbar-nav",
                     __source: {
                         fileName: "src/components/common/navbar.jsx",
-                        lineNumber: 28
+                        lineNumber: 26
+                    },
+                    __self: this
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Collapse, {
+                    id: "responsive-navbar-nav",
+                    __source: {
+                        fileName: "src/components/common/navbar.jsx",
+                        lineNumber: 27
                     },
                     __self: this,
-                    children: [
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Toggle, {
-                            "aria-controls": "responsive-navbar-nav",
-                            __source: {
-                                fileName: "src/components/common/navbar.jsx",
-                                lineNumber: 29
-                            },
-                            __self: this
-                        }),
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Collapse, {
-                            id: "responsive-navbar-nav",
-                            __source: {
-                                fileName: "src/components/common/navbar.jsx",
-                                lineNumber: 30
-                            },
-                            __self: this,
-                            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav, {
-                                className: "me-auto",
+                    children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
+                        className: "justify-content-end my-0 py-0",
+                        style: {
+                            width: "100%"
+                        },
+                        __source: {
+                            fileName: "src/components/common/navbar.jsx",
+                            lineNumber: 28
+                        },
+                        __self: this,
+                        children: [
+                            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                                as: _reactRouterDom.Link,
+                                eventKey: 1,
+                                to: "/",
+                                __source: {
+                                    fileName: "src/components/common/navbar.jsx",
+                                    lineNumber: 29
+                                },
+                                __self: this,
+                                children: "Movies"
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                                as: _reactRouterDom.Link,
+                                eventKey: 2,
+                                to: "/profile",
+                                __source: {
+                                    fileName: "src/components/common/navbar.jsx",
+                                    lineNumber: 30
+                                },
+                                __self: this,
+                                children: "Profile"
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                                className: "btn-logout",
+                                variant: "danger",
+                                onClick: ()=>props.onLogout()
+                                ,
                                 __source: {
                                     fileName: "src/components/common/navbar.jsx",
                                     lineNumber: 31
                                 },
                                 __self: this,
-                                children: renderNavButtons()
+                                children: "Logout"
                             })
-                        })
-                    ]
+                        ]
+                    })
                 })
             ]
         })

@@ -337,29 +337,13 @@ span {
   padding: 0;
 }
 
-nav {
-  margin: 0;
-  max-height: 70px;
-}
-
 nav ul {
   list-style: none;
 }
 
-.navbar-brand {
-  margin: 0;
+.navbar-brand h1 {
   font-family: "Shizuru", cursive;
-  font-size: 2em;
   color: white;
-}
-
-.nav-links {
-  display: inline-flex;
-  flex-direction: row;
-}
-
-ul li {
-  margin: 0 10px;
 }
 #container {
   padding: 0;
