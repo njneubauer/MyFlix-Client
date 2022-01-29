@@ -117,7 +117,7 @@ img {
 }
 .login-view {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.548);
+  background-color: rgba(0, 0, 0, 0.425);
   padding: 0 !important;
   margin: 0;
   width: 100%;
@@ -208,7 +208,7 @@ footer p {
 }
 .registration-view {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.548);
+  background-color: rgba(0, 0, 0, 0.425);
   margin: 0;
   padding: 0 !important;
   width: 100%;
