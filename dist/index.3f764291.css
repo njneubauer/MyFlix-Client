@@ -1,0 +1,382 @@
+.movie-card {
+  cursor: pointer;
+}
+
+.card {
+  border: none !important;
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+
+.card-body {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.card-title {
+  padding-bottom: 10px;
+  font-size: 14pt !important;
+}
+html {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, black, #3d3d3d);
+}
+
+nav h1 {
+  display: inline-flex;
+}
+
+.nav-items {
+  display: inline-flex;
+  float: right;
+  margin: 25px 25px;
+  list-style-type: none;
+}
+
+img {
+  display: block;
+  width: 340px;
+  height: auto;
+}
+
+.movie-view {
+  color: white;
+}
+
+.movie-view-container-1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 50px 0 0 0;
+}
+
+.label {
+  font-style: italic;
+}
+
+.back-btn {
+  width: 200px;
+  margin-top: 10px;
+}
+
+.back-btn-container {
+  text-align: center;
+}
+
+.favorites-img-btn {
+  width: 340px;
+  margin-top: 10px;
+}
+
+.movie-item-1 {
+  margin: 0 30px;
+}
+
+.movie-item-2 {
+  text-align: left;
+  width: 400px;
+  height: auto;
+  margin: 0 30px;
+}
+
+.movie-item-2 ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.movie-item-2 h1 {
+  font-size: 18pt !important;
+}
+
+.movie-item-2 h2 {
+  font-size: 14;
+}
+.director-view-container-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+}
+
+.dir-item-1 {
+  width: 800px;
+  height: auto;
+}
+
+.dir-item-1 p, h2 {
+  text-align: left;
+}
+
+#btn-director-back {
+  width: 200px;
+}
+.login-view {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.548);
+  padding: 0 !important;
+  margin: 0;
+  width: 100%;
+  height: 960px;
+}
+
+.form-card {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin-top: 0;
+  margin-bottom: 0 !important;
+}
+
+.form-container {
+  background: rgba(0, 0, 0, 0.753);
+  color: white;
+  margin: 30px 0 0 0;
+  padding: 30px 60px;
+  width: 370px;
+  min-height: 500px;
+  max-height: 700px;
+  font-size: 1.2em;
+  text-align: left;
+}
+
+.form-title {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.form-control {
+  background: #272727 !important;
+  border-color: #444444 !important;
+  color: white !important;
+}
+
+.login-registration-input {
+  width: 110% !important;
+}
+
+.validation-err-text {
+  margin: 0px;
+  color: gray;
+  font-size: 18px;
+}
+
+.validation-err-text-red {
+  margin: 0px;
+  width: 110%;
+  color: red;
+  font-size: 18px;
+  text-align: center;
+}
+
+.form-control:focus {
+  border-color: white !important;
+  box-shadow: none !important;
+}
+
+.btn-login {
+  display: block;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+.footer-container {
+  color: #888888;
+  background: rgba(0, 0, 0, 0.753);
+  position: fixed;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 80px;
+}
+
+.footer-content {
+  display: block;
+  margin: 10px 0 10px 0;
+}
+
+footer p {
+  text-align: center;
+  padding-top: 5px;
+  margin: 0;
+}
+.registration-view {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.548);
+  margin: 0;
+  padding: 0 !important;
+  width: 100%;
+  height: 960px;
+}
+
+#validation-err-text-red {
+  margin: 0px;
+  width: 110%;
+  color: red;
+  font-size: 18px;
+  text-align: center;
+}
+
+.form-container-registration {
+  background: rgba(0, 0, 0, 0.753);
+  color: white;
+  padding: 30px 60px 50px 60px;
+  width: 370px;
+  min-height: 625px;
+  max-height: 750px;
+  font-size: 1.2em;
+  margin: 30px 0 0 0;
+  text-align: left;
+}
+
+.btn-registration {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+.profile-view {
+  position: absolute;
+  margin: 0;
+  padding: 0 !important;
+  width: 100%;
+}
+
+.form-container-profile {
+  background: black;
+  color: white;
+  box-shadow: 0px 0px 18px 1px white;
+  padding: 30px 60px 60px 60px;
+  width: 400px;
+  min-height: 625px;
+  max-height: 770px;
+  font-size: 1.2em;
+  margin: 30px 0 0 0;
+  text-align: left;
+}
+
+.btn-profile {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.favorite-movies-list {
+  text-align: left;
+  width: 405px;
+}
+
+.favorite-movies-list ul li {
+  list-style-type: none;
+  margin-top: 1em;
+}
+
+.favorite-movies-list ul {
+  padding-left: 0;
+}
+
+.user-info-text {
+  text-align: left;
+}
+
+.user-info-item {
+  color: #b8b8b8;
+  line-height: 2;
+}
+
+span {
+  font-weight: bold;
+  color: white;
+}
+.genre-view {
+  color: white;
+}
+
+.genre-view-container-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+}
+
+.genre-item-1 {
+  width: 800px;
+  height: auto;
+}
+
+.genre-item-1 p, h2 {
+  text-align: left;
+}
+#background-img {
+  background-image: url("movie_wallpaper.47e0ab08.jpg");
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-height: 950px;
+}
+
+#background-color {
+  background: linear-gradient(180deg, black, #464646);
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-height: 950px;
+  height: auto;
+}
+
+#row {
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  margin: 0;
+  height: 70px;
+}
+
+nav .nav-container {
+  margin: 0 0 15px 0;
+  height: 50px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+.navbar-nav h1 {
+  font-family: "Shizuru", cursive;
+  font-size: 2em;
+  color: white;
+}
+
+.nav-links {
+  display: inline-flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+ul li {
+  margin: 0 10px;
+}
+#container {
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+.app-container {
+  margin: 0;
+}
+
+div {
+  margin: 12px 0px 12px 0px;
+}
+/*# sourceMappingURL=index.3f764291.css.map */

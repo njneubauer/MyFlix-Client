@@ -12,6 +12,14 @@ $background-color: linear-gradient(180deg, black, rgb(61, 61, 61));
     height: 960px;
 }
 
+#validation-err-text-red {
+    margin: 0px;
+    width: 110%;
+    color: red;
+    font-size: 18px;
+    text-align: center;
+}
+
 .form-container-registration {
     background: $card-shader;
     color: $form-text;

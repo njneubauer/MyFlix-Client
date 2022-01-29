@@ -54,8 +54,16 @@ $footer-text: rgb(136, 136, 136);
 
 .validation-err-text {
     margin: 0px;
-    color: grey;
+    color: gray;
     font-size: 18px;
+}
+
+.validation-err-text-red {
+    margin: 0px;
+    width: 110%;
+    color: red;
+    font-size: 18px;
+    text-align: center;
 }
 
 .form-control:focus {

@@ -12,8 +12,11 @@ export function LoginView(props) {
     const [ password, setPassword ] = useState('');
     const [ usernameErr, setUsernameErr ] = useState('');
     const [ passwordErr, setPasswordErr ] = useState('');
+    const [ invalidCredentials, setInvalidCredentials ] = useState('');
 
     const validate = ()=>{
+        setInvalidCredentials('');
+
         let isReq = true;
         if(!username){
             setUsernameErr('Username required');
@@ -23,6 +26,9 @@ export function LoginView(props) {
             setUsernameErr('Username must be at least 5 characters long');
             isReq = false
         }
+        else {
+            setUsernameErr('');
+        }
         if(!password){
             setPasswordErr('Password required')
             isReq = false;
@@ -31,6 +37,9 @@ export function LoginView(props) {
             setPasswordErr('Password must be at least 5 characters long');
             isReq = false
         }
+        else {
+            setPasswordErr('');
+        }
         return isReq;
     }
 
@@ -38,7 +47,11 @@ export function LoginView(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const isReq = validate();
-
+        if(!isReq){
+            validationText = document.getElementById('validation-err-text');
+            validationText.classList.remove('validation-err-text-red');
+            validationText.classList.add('validation-err-text');
+        }
         if(isReq){
             /* Send a request to the server for authentication */
             axios.post('https://nickflixapi.herokuapp.com/login', {
@@ -47,8 +60,7 @@ export function LoginView(props) {
             }).then(response=>{
                 props.onLoggedIn(response.data);
             }).catch(err=>{
-                console.error(err);
-                alert('Invalid Username or Password');
+                setInvalidCredentials('Invalid login credentials');
             });
         }
     };
@@ -61,6 +73,7 @@ export function LoginView(props) {
                         <Form.Label className="form-title">Sign In</Form.Label>
                         <Form.Group>
                         <Form.Label>
+                            {invalidCredentials && <p className="validation-err-text-red">{invalidCredentials}</p>}
                             Username
                             <Form.Control type="text" className="login-registration-input" value={username} onChange={e => setUsername(e.target.value)} />    
                             {usernameErr && <p className="validation-err-text">{usernameErr}</p>}

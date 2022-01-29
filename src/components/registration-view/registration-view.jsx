@@ -16,8 +16,11 @@ export function RegistrationView(props){
     const [ passwordErr, setPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
     const [ birthdayErr, setBirthdayErr ] = useState('');
+    const [ invalidCredentials, setInvalidCredentials ] = useState('');
 
     const validate = ()=>{
+        setInvalidCredentials('');
+
         let isReq = true;
         if(!username){
             setUsernameErr('Username required');
@@ -85,7 +88,8 @@ export function RegistrationView(props){
                 alert(`Welcome ${data.username}! Please log in.`)
                 window.open('/', '_self');
             }).catch(e=>{
-                console.log('error registering the user...');
+                console.error(e.response.data);
+                setInvalidCredentials(e.response.data);
             });
         };
     }
@@ -97,6 +101,7 @@ export function RegistrationView(props){
                         <Form>
                             <Form.Label className="form-title">Sign Up!</Form.Label>
                             <Form.Label>
+                                {invalidCredentials && <p id="validation-err-text-red">{invalidCredentials}</p>}
                                 Username <br />
                                 <Form.Control type="text" className='login-registration-input' value={username} onChange={e=>{ setUsername(e.target.value); }} />
                                 {usernameErr && <p className="validation-err-text">{usernameErr}</p>}
