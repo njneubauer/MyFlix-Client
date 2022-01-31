@@ -11,8 +11,8 @@ export class GenreView extends React.Component {
         const genreInfo = genrefilter.map(function(g){
             return (
                <div className="genre-info"> 
-                    <h2 key={g.name+'1'}><strong>{g.name}</strong></h2>
-                    <p key={g.description+'1'}>{g.description}</p>
+                    <h2 key={g.name}><strong>{g.name}</strong></h2>
+                    <p key={g.description}>{g.description}</p>
                 </div>
             )
          });

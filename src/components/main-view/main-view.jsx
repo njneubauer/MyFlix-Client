@@ -24,7 +24,6 @@ class MainView extends React.Component {
         super();  
         this.state = {
             user: null,
-            userData: null
         }
     }
 
@@ -39,46 +38,53 @@ class MainView extends React.Component {
             console.log(error);
         });
     }
+
+    getUser(token){
+        const username = localStorage.getItem('user');
+        axios.get(`https://nickflixapi.herokuapp.com/user/${username}`, {
+            headers:{ Authorization: `bearer ${token}` }
+        }).then(response=>{
+            this.props.setUser(response.data);
+        }).catch(e=>{
+            console.log('error aquiring user info');
+        });
+    }
     
     componentDidMount(){
         let accessToken = localStorage.getItem('token');
         if(accessToken !== null){
             this.setState({
-                user: localStorage.getItem('user'),
+                user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
+            this.getUser(accessToken);
         }
     }
 
     onLoggedIn(authData) {
-        this.setState({
-            userData: authData.user,
-            user: authData.user.username
-        });
+        this.setState({ user: authData.user.username });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.username);
         this.getMovies(authData.token);
+        this.getUser(authData.token);
     }
 
     setUserState(userData){
-        this.setState({
-            userData: userData,
-            user: userData.username
-        });
+        this.props.setUser(userData);
     }
 
     onLogout(){
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        localStorage.removeItem('favoriteMovies');
+        localStorage.clear();
+        this.props.setUser('');
         this.setState({
             user: null
         });
+        window.location.href = '/';
     }
-
+    
     render(){
-        const { user, userData } = this.state;
-        const { movies } = this.props;
+        const { user } = this.state;
+        const { movies, userInfo } = this.props;
         const bgClass = (user) ? 'background-color' : 'background-img';
 
         return (
@@ -92,7 +98,6 @@ class MainView extends React.Component {
                                     if (movies.length === 0) return <div className="main-view">Loading</div>;
                                     
                                     return <MoviesList movies={movies} />
-                                        // <Col s={12} md={6} lg={4} xl={3} xxl={2} key={m._id}></Col>
                                 }
                             } />
                             
@@ -103,7 +108,7 @@ class MainView extends React.Component {
                             
                             <Route path="/profile" render={()=>{
                                 if (!user) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} /> 
-                                return <ProfileView userData={userData} user={user} setUserState={user=> this.setUserState(user)} onLogout={()=> this.onLogout()} />
+                                return <ProfileView userInfo={userInfo} setUserState={user=> this.setUserState(user)} onLogout={()=> this.onLogout()} />
                             }} />
 
                             <Route path="/movies/:movieId" render={({ match, history })=>{ 
@@ -111,7 +116,7 @@ class MainView extends React.Component {
                                     
                                 if (movies.length === 0) return <div className="main-view">Loading</div>;
 
-                                return <Col md={12}><MovieView userData={userData} user={user} setUserState={userData=> this.setUserState(userData)} movie={movies.find(m=> m._id === match.params.movieId)} onBackClick={() => history.goBack()} /></Col>
+                                return <Col md={12}><MovieView userInfo={userInfo} setUserState={userData=> this.setUserState(userData)} movie={movies.find(m=> m._id === match.params.movieId)} onBackClick={() => history.goBack()} /></Col>
                             }} />
 
                             <Route path="/directors/:name" render={({ match, history }) => {
@@ -144,8 +149,8 @@ class MainView extends React.Component {
 let mapStateToProps = state => {
     return { 
         movies: state.movies,
-        user: state.user 
+        userInfo: state.userInfo
     }
 }
 
-export default connect(mapStateToProps, {setMovies})(MainView);
+export default connect(mapStateToProps, {setMovies, setUser})(MainView);

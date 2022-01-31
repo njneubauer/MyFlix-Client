@@ -18,7 +18,7 @@ export class MovieCard extends React.Component {
 }
 
 MovieCard.propTypes = {
-    movieData: propTypes.shape({
+    movie: propTypes.shape({
         imageCode: propTypes.string.isRequired,
     }).isRequired,
 };

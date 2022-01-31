@@ -9,10 +9,12 @@ import axios from "axios";
 export class MovieView extends React.Component {
     
     addToFavorites(){
-        let token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+
         axios({
                 method: 'post', 
-                url: `https://nickflixapi.herokuapp.com/${this.props.user}/addmovie/${this.props.movie.title}`,
+                url: `https://nickflixapi.herokuapp.com/${user}/addmovie/${this.props.movie.title}`,
                 headers: { Authorization: `bearer ${token}` }
         }).then(response =>{
             this.props.setUserState(response.data);
@@ -23,10 +25,12 @@ export class MovieView extends React.Component {
     }
 
     deleteFromFavorites(){
-        let token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+
         axios({
             method: 'delete', 
-            url: `https://nickflixapi.herokuapp.com/${this.props.user}/favorites/delete/${this.props.movie.title}`, 
+            url: `https://nickflixapi.herokuapp.com/${user}/favorites/delete/${this.props.movie.title}`, 
             headers: { Authorization: `bearer ${token}` }
         }).then(response =>{
             this.props.setUserState(response.data);
@@ -37,14 +41,13 @@ export class MovieView extends React.Component {
     }
 
     render() {
-        const { movie, onBackClick, userData } = this.props;
-
-        const genres = movie.genreNames.map((genre)=><li key={genre.name+'1'}><Button as={Link} to={`/genres/${genre.name}`} className="primary">{genre.name}</Button></li>);
+        const { movie, onBackClick, userInfo } = this.props;
+        const genres = movie.genreNames.map((genre)=><li className="genre-btn-margin" key={genre.name}><Button as={Link} to={`/genres/${genre.name}`} className="primary">{genre.name}</Button></li>);
         
         const directorInfo = movie.directorInfo.map(function(d){
             return (
                <div className="director-info">
-                    <li key={d.name}><Button as={Link}to={`/directors/${d.name}`} className="primary">{d.name}</Button></li>
+                    <li className="director-btn-margin" key={d.name}><Button as={Link}to={`/directors/${d.name}`} className="primary">{d.name}</Button></li>
                 </div>
             )
          });
@@ -54,7 +57,7 @@ export class MovieView extends React.Component {
                 <div className="movie-view-container-1">
                     <div className="movie-item-1">
                         <img src={'data:image/png;base64, '+ movie.imageCode} alt="" />
-                        {  userData.favoriteMovies.includes(movie._id)
+                        {  userInfo.favoriteMovies.includes(movie._id)
                             ? <Button className="favorites-img-btn" variant="danger" onClick={ ()=>this.deleteFromFavorites() }>Delete from Favorites</Button>
                             : <Button className="favorites-img-btn" variant="warning" onClick={ ()=>this.addToFavorites() }>Add to Favorites</Button>  
                         }
@@ -98,8 +101,8 @@ MovieView.propTypes = {
         directorInfo: propTypes.array.isRequired,
         genreNames: propTypes.array.isRequired
     }).isRequired,
-    userData: propTypes.shape({
-        favoriteMovies: propTypes.string.isRequired
+    userInfo: propTypes.shape({
+        favoriteMovies: propTypes.array.isRequired
     }).isRequired,
     onBackClick: propTypes.func.isRequired
 };

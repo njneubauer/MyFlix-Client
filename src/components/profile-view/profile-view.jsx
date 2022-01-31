@@ -6,7 +6,7 @@ import './profile-view.scss';
 import moment from 'moment';
 import propTypes from "prop-types";
 
-export function ProfileView({ user, setUserState, onLogout }){
+export function ProfileView({ userInfo, onLogout, setUserState }){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
@@ -18,8 +18,7 @@ export function ProfileView({ user, setUserState, onLogout }){
     const [ confirmPasswordErr, setConfirmPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
     const [ birthdayErr, setBirthdayErr ] = useState('');
-    const [ userInfo, setUserInfo ] = useState('');
-
+    console.log(userInfo);
     const validate = ()=>{
         let isReq = true;
         if(!username){
@@ -81,21 +80,10 @@ export function ProfileView({ user, setUserState, onLogout }){
         return isReq;
     }
 
-    useEffect(()=>{
-        let token = localStorage.getItem('token');
-        let username = localStorage.getItem('user');
-        axios.get(`https://nickflixapi.herokuapp.com/user/${username}`, {
-            headers:{ Authorization: `bearer ${token}` }
-        }).then(response=>{
-            setUserInfo(response.data);
-        }).catch(e=>{
-            console.log('error aquiring user info');
-        });
-    },[user]);
- 
     function handleSubmit(e) {
         e.preventDefault();
-        let token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
         const isReq = validate();
         if(isReq){
             axios({
@@ -110,7 +98,6 @@ export function ProfileView({ user, setUserState, onLogout }){
                 }
             }).then(response=>{
                 localStorage.setItem('user', response.data.username);
-                setUserInfo(response.data);
                 setUserState(response.data);
             }).catch(err=>{
                 console.error(err);
@@ -121,7 +108,9 @@ export function ProfileView({ user, setUserState, onLogout }){
     }
 
     function handleDelete(){
-        let token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+
         axios.delete(`https://nickflixapi.herokuapp.com/remove/${user}`, {
             headers: { Authorization: `Bearer ${token}` }
         }).then(response => {
