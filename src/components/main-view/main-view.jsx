@@ -95,7 +95,7 @@ class MainView extends React.Component {
                             <Route exact path="/" render={()=>{                                                        
                                     if (!user) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} />
                                                        
-                                    if (movies.length === 0) return <div className="main-view">Loading</div>;
+                                    if (movies.length === 0) return <div className="main-view" />;
                                     
                                     return <MoviesList movies={movies} />
                                 }
@@ -108,12 +108,15 @@ class MainView extends React.Component {
                             
                             <Route path="/profile" render={()=>{
                                 if (!user) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} /> 
-                                return <ProfileView userInfo={userInfo} setUserState={user=> this.setUserState(user)} onLogout={()=> this.onLogout()} />
+                                
+                                if (userInfo.length === 0) return <div className="main-view" />;
+
+                                return <ProfileView userInfo={userInfo} setUserState={user=> this.setUserState(user)} getUser={token=> this.getUser(token)} onLogout={()=> this.onLogout()} />
                             }} />
 
                             <Route path="/movies/:movieId" render={({ match, history })=>{ 
                                 if (!user) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} />
-                                    
+
                                 if (movies.length === 0) return <div className="main-view">Loading</div>;
 
                                 return <Col md={12}><MovieView userInfo={userInfo} setUserState={userData=> this.setUserState(userData)} movie={movies.find(m=> m._id === match.params.movieId)} onBackClick={() => history.goBack()} /></Col>

@@ -6,7 +6,7 @@ import './profile-view.scss';
 import moment from 'moment';
 import propTypes from "prop-types";
 
-export function ProfileView({ userInfo, onLogout, setUserState }){
+export function ProfileView({ userInfo, onLogout, setUserState, getUser }){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
@@ -18,7 +18,7 @@ export function ProfileView({ userInfo, onLogout, setUserState }){
     const [ confirmPasswordErr, setConfirmPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState('');
     const [ birthdayErr, setBirthdayErr ] = useState('');
-    console.log(userInfo);
+
     const validate = ()=>{
         let isReq = true;
         if(!username){
@@ -134,24 +134,24 @@ export function ProfileView({ userInfo, onLogout, setUserState }){
                         }
                     </div>
                     <div className="favorite-movies-list">
-                            <h2>Favorite Movies List</h2>
-                            <ul> 
-                                { userInfo && userInfo.favoriteMoviesInfo.map(m=><li key={m.title}><Button as={Link} to={`/movies/${m._id}`}>{m.title}</Button></li>)
-                                .sort(function(a,b){
-                                    let nameA = a.key;
-                                    let nameB = b.key; 
-                                    if (nameA < nameB) {
-                                        return -1;
-                                      }
-                                      if (nameA > nameB) {
-                                        return 1;
-                                      }
-                                    
-                                      // names must be equal
-                                      return 0;
-                                    })
-                                }
-                            </ul>
+                        <h2>Favorite Movies List</h2>
+                        <ul> 
+                            { userInfo && userInfo.favoriteMoviesInfo.map(m=><li key={m.title}><Button as={Link} to={`/movies/${m._id}`}>{m.title}</Button></li>)
+                            .sort(function(a,b){
+                                let nameA = a.key;
+                                let nameB = b.key; 
+                                if (nameA < nameB) {
+                                    return -1;
+                                    }
+                                    if (nameA > nameB) {
+                                    return 1;
+                                    }
+                                
+                                    // names must be equal
+                                    return 0;
+                                })
+                            }
+                        </ul>
                     </div>
                 </Col>
                 <Col className="d-flex align-items-center justify-content-center" md={7}>
@@ -198,7 +198,11 @@ export function ProfileView({ userInfo, onLogout, setUserState }){
 }
 
 ProfileView.propTypes = {
+    userInfo: propTypes.shape({
+        username: propTypes.string.isRequired,
+        email: propTypes.string.isRequired,
+        birthday: propTypes.string.isRequired
+    }).isRequired,
     onLogout: propTypes.func.isRequired,
     setUserState: propTypes.func.isRequired
 }
- 

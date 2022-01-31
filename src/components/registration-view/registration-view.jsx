@@ -3,8 +3,6 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import { Form, Button } from "react-bootstrap";
 import './registration-view.scss';
-import propTypes from "prop-types";
-
 
 export function RegistrationView(props){
     const [ username, setUsername ] = useState('');
@@ -140,5 +138,3 @@ export function RegistrationView(props){
     );
 }
 
-RegistrationView.propTypes = {
-}

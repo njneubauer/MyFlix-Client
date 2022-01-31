@@ -10,9 +10,9 @@ export class GenreView extends React.Component {
         const genrefilter = genre.filter(g=>g.name === genreParam);
         const genreInfo = genrefilter.map(function(g){
             return (
-               <div className="genre-info"> 
-                    <h2 key={g.name}><strong>{g.name}</strong></h2>
-                    <p key={g.description}>{g.description}</p>
+               <div key={"genre-info"} className="genre-info"> 
+                    <h2><strong>{g.name}</strong></h2>
+                    <p>{g.description}</p>
                 </div>
             )
          });
@@ -32,9 +32,9 @@ export class GenreView extends React.Component {
 }
 
 GenreView.propTypes = {
-    genre: propTypes.shape({
+    genre: propTypes.arrayOf(propTypes.shape({
         name: propTypes.string.isRequired,
         description: propTypes.string.isRequired,
-    }).isRequired,
+    })).isRequired,
     onBackClick: propTypes.func.isRequired
 };

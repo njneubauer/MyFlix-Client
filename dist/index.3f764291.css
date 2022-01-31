@@ -339,19 +339,33 @@ span {
   height: auto;
 }
 
+a.nav-link {
+  margin-right: 10px;
+}
+
+.btn-logout {
+  margin-left: 5px;
+}
+
 #row {
   background-color: rgba(0, 0, 0, 0);
   margin: 0;
   padding: 0;
 }
 
-nav ul {
-  list-style: none;
-}
-
 .navbar-brand h1 {
   font-family: "Shizuru", cursive;
   color: white;
+}
+
+@media only screen and (max-width: 575px) {
+  a.nav-link {
+    margin-right: 0;
+  }
+
+  .btn-logout {
+    margin-left: 0;
+  }
 }
 #container {
   padding: 0;

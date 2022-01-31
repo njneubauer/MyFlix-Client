@@ -8,11 +8,11 @@ export class DirectorView extends React.Component {
     render() {
         const { director, dirParam, onBackClick } = this.props;
         const dirFilter = director.filter(d=>d.name === dirParam);
-        const directorInfo = dirFilter.map(function(d){
+        const directorInfo = dirFilter.map(function(d, index){
             return (
-               <div className="director-info"> 
-                    <h2 key={d.name+'1'}><strong>{d.name}</strong></h2>
-                    <p key={d.bio+'1'}>{d.bio}</p>
+               <div key={index} className="director-info">
+                    <h2><strong>{d.name}</strong></h2>
+                    <p>{d.bio}</p>
                 </div>
             )
          });
@@ -32,10 +32,10 @@ export class DirectorView extends React.Component {
 }
 
 DirectorView.propTypes = {
-    director: propTypes.shape({
+    director: propTypes.arrayOf(propTypes.shape({
         name: propTypes.string.isRequired,
         bio: propTypes.string.isRequired,
-    }).isRequired,
+    })).isRequired,
     dirParam: propTypes.string.isRequired,
     onBackClick: propTypes.func.isRequired
 };

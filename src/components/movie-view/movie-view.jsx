@@ -44,9 +44,9 @@ export class MovieView extends React.Component {
         const { movie, onBackClick, userInfo } = this.props;
         const genres = movie.genreNames.map((genre)=><li className="genre-btn-margin" key={genre.name}><Button as={Link} to={`/genres/${genre.name}`} className="primary">{genre.name}</Button></li>);
         
-        const directorInfo = movie.directorInfo.map(function(d){
+        const directorInfo = movie.directorInfo.map(function(d, index){
             return (
-               <div className="director-info">
+               <div key={index.toString()} className="director-info">
                     <li className="director-btn-margin" key={d.name}><Button as={Link}to={`/directors/${d.name}`} className="primary">{d.name}</Button></li>
                 </div>
             )

@@ -19,41 +19,32 @@ $background-color: linear-gradient(180deg, black, rgb(70, 70, 70));
     height: auto;
 }
 
+a.nav-link {
+    margin-right: 10px;
+}
+
+.btn-logout {
+    margin-left: 5px;
+}
+
 #row{
     background-color: rgb(0,0,0,0);
     margin: 0;
     padding: 0;
 }
 
-nav {
-    // margin: 0;
-    // max-height: 70px;
-}
-
-// nav .nav-container {
-//     margin: 0 0 15px 0;
-//     height: 50px;
-// }
-
-nav ul {
-    list-style: none;
-}
-
 .navbar-brand h1 {
-    // margin: 0;
     font-family: 'Shizuru', cursive;
-    // font-size: 2em;
     color: white;
 }
 
-// .nav-links {
-//     display: inline-flex;
-//     flex-direction: row;
-// }
-
-// ul li {
-//     margin: 0 10px;
-// }
-
-
+@media only screen and (max-width: 575px) {
+    a.nav-link {
+        margin-right: 0;
+    }
+    
+    .btn-logout {
+        margin-left: 0;
+    }
+}
 
