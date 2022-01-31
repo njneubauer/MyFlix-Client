@@ -1,7 +1,7 @@
-# NickFlix-Client
+# Nickflix-Client
 Nickflix is a client side application built using ReactJS for server-side api. Nickflix is a responsive single page application that displays a list of movies for registered users. Users are allowed to view movie details including: release year, genres, director information, and plot. Information about the genre or director is displayed in their own views. A user may also generate a list of favorite movies and update their information. 
 
-URL: https://nickflixmovieinfo.netlify.app
+Nickflix URL: &nbsp; https://nickflixmovieinfo.netlify.app
 
 <br>
 
@@ -14,6 +14,9 @@ URL: https://nickflixmovieinfo.netlify.app
 6. Users can add/remove the selected movie to their favorites list
 7. Users can update their user information
 
+<br>
+
+<img src="./src/images/Nickflix_homescreen.png">
 
 <br>
 
