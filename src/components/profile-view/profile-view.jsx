@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import './profile-view.scss';
 import moment from 'moment';
+import { connect } from "react-redux";
+import { setUser } from '../../actions/actions';
 import propTypes from "prop-types";
 
-export function ProfileView({ userInfo, onLogout, setUserState, getUser }){
+function ProfileView({ userInfo, onLogout, setUser }){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
@@ -83,7 +85,7 @@ export function ProfileView({ userInfo, onLogout, setUserState, getUser }){
     function handleSubmit(e) {
         e.preventDefault();
         const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
+        const user = userInfo.username;
         const isReq = validate();
         if(isReq){
             axios({
@@ -97,20 +99,17 @@ export function ProfileView({ userInfo, onLogout, setUserState, getUser }){
                     birthday: birthday
                 }
             }).then(response=>{
-                localStorage.setItem('user', response.data.username);
-                setUserState(response.data);
+                setUser(response.data);
             }).catch(err=>{
                 console.error(err);
                 alert('Username or email already in use');
-
             });
         };
     }
 
     function handleDelete(){
         const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
-
+        const user = userInfo.username;
         axios.delete(`https://nickflixapi.herokuapp.com/remove/${user}`, {
             headers: { Authorization: `Bearer ${token}` }
         }).then(response => {
@@ -197,12 +196,21 @@ export function ProfileView({ userInfo, onLogout, setUserState, getUser }){
     );
 }
 
-ProfileView.propTypes = {
+ProfileView.prototypes = {
     userInfo: propTypes.shape({
         username: propTypes.string.isRequired,
         email: propTypes.string.isRequired,
         birthday: propTypes.string.isRequired
     }).isRequired,
     onLogout: propTypes.func.isRequired,
-    setUserState: propTypes.func.isRequired
+    setUser: propTypes.func.isRequired
 }
+
+let mapStateToProps = state => {
+    return { 
+        movies: state.movies,
+        userInfo: state.userInfo
+    }
+}
+
+export default connect(mapStateToProps, {setUser})(ProfileView);

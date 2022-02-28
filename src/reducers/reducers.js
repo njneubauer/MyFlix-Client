@@ -21,7 +21,7 @@ function movies(state = [], action){
     }
 }
 
-function userInfo(state = [], action){
+function userInfo(state = null, action){
     switch (action.type){
         case SET_USER:
             return action.value;
@@ -30,7 +30,6 @@ function userInfo(state = [], action){
             return state;
     }
 }
-
 
 const moviesApp = combineReducers({
     visibilityFilter,

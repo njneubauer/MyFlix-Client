@@ -4,20 +4,21 @@ import { Link } from 'react-router-dom'
 import './movie-view.scss';
 import propTypes from "prop-types";
 import axios from "axios";
+import { connect } from "react-redux";
+import { setUser } from '../../actions/actions';
 
+class MovieView extends React.Component {
 
-export class MovieView extends React.Component {
-    
     addToFavorites(){
         const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
+        const user = this.props.userInfo.username;
 
         axios({
                 method: 'post', 
                 url: `https://nickflixapi.herokuapp.com/${user}/addmovie/${this.props.movie.title}`,
                 headers: { Authorization: `bearer ${token}` }
         }).then(response =>{
-            this.props.setUserState(response.data);
+            this.props.setUser(response.data);
             localStorage.setItem('favoriteMovies', response.data.favoriteMovies);
         }).catch(err =>{
             console.error(err);
@@ -26,14 +27,14 @@ export class MovieView extends React.Component {
 
     deleteFromFavorites(){
         const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
+        const user = this.props.userInfo.username;
 
         axios({
             method: 'delete', 
             url: `https://nickflixapi.herokuapp.com/${user}/favorites/delete/${this.props.movie.title}`, 
             headers: { Authorization: `bearer ${token}` }
         }).then(response =>{
-            this.props.setUserState(response.data);
+            this.props.setUser(response.data);
             localStorage.setItem('favoriteMovies', response.data.favoriteMovies);
         }).catch(err=>{
             console.error(err);
@@ -42,8 +43,11 @@ export class MovieView extends React.Component {
 
     render() {
         const { movie, onBackClick, userInfo } = this.props;
-        const genres = movie.genreNames.map((genre)=><li className="genre-btn-margin" key={genre.name}><Button as={Link} to={`/genres/${genre.name}`} className="primary">{genre.name}</Button></li>);
-        
+
+        const genres = movie.genreNames.map((genre)=>{
+            return <li className="genre-btn-margin" key={genre.name}><Button as={Link} to={`/genres/${genre.name}`} className="primary">{genre.name}</Button></li>
+        });
+
         const directorInfo = movie.directorInfo.map(function(d, index){
             return (
                <div key={index.toString()} className="director-info">
@@ -51,15 +55,17 @@ export class MovieView extends React.Component {
                 </div>
             )
          });
-
+         const styles = {
+           
+         }
         return (
             <div className="movie-view">
                 <div className="movie-view-container-1">
                     <div className="movie-item-1">
                         <img src={'data:image/png;base64, '+ movie.imageCode} alt="" />
                         {  userInfo.favoriteMovies.includes(movie._id)
-                            ? <Button className="favorites-img-btn" variant="danger" onClick={ ()=>this.deleteFromFavorites() }>Delete from Favorites</Button>
-                            : <Button className="favorites-img-btn" variant="warning" onClick={ ()=>this.addToFavorites() }>Add to Favorites</Button>  
+                            ? <Button className="favorites-img-btn" variant="danger" style={styles} onClick={ ()=>this.deleteFromFavorites() }>Delete from Favorites</Button>
+                            : <Button className="favorites-img-btn" variant="warning" style={styles} onClick={ ()=>this.addToFavorites() }>Add to Favorites</Button>  
                         }
                     </div>
                     <div className="movie-item-2">
@@ -106,3 +112,12 @@ MovieView.propTypes = {
     }).isRequired,
     onBackClick: propTypes.func.isRequired
 };
+
+const mapStateToProps = state => {
+    return { 
+        movies: state.movies,
+        userInfo: state.userInfo
+    }
+}
+
+export default connect(mapStateToProps, {setUser})(MovieView);

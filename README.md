@@ -20,9 +20,17 @@ Nickflix URL: &nbsp; https://nickflixmovieinfo.netlify.app
 
 <br>
 
+## How to run site locally:
+```
+npm run start
+```
+<br>
+
 ## Build Tool
 * Parcel V2.0.0
-* Entry point src/index.html
+
+
+
 
 
 

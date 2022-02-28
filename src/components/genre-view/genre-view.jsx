@@ -17,7 +17,7 @@ export class GenreView extends React.Component {
             )
          });
 
-        return (
+         return (
             <div className="genre-view">
                 <div className="genre-view-container-1">
                     <div className="genre-item-1">

@@ -380,4 +380,8 @@ a.nav-link {
 div {
   margin: 12px 0px 12px 0px;
 }
+
+.btn:focus {
+  box-shadow: none !important;
+}
 /*# sourceMappingURL=index.3f764291.css.map */
