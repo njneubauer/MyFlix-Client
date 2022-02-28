@@ -48,7 +48,6 @@ class MainView extends React.Component {
         let accessToken = localStorage.getItem('token');
         if(accessToken !== null){
             this.getMovies();
-            // this.getUser(this.props.userInfo.username);
         }
     }
 
@@ -57,10 +56,6 @@ class MainView extends React.Component {
         localStorage.setItem('token', authData.token);
         this.getMovies();
         this.getUser(authData.user.username);
-    }
-
-    setUserState(userData){
-        this.props.setUser(userData);
     }
 
     onLogout(){

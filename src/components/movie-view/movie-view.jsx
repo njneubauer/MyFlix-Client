@@ -19,7 +19,6 @@ class MovieView extends React.Component {
                 headers: { Authorization: `bearer ${token}` }
         }).then(response =>{
             this.props.setUser(response.data);
-            localStorage.setItem('favoriteMovies', response.data.favoriteMovies);
         }).catch(err =>{
             console.error(err);
         });
@@ -35,7 +34,6 @@ class MovieView extends React.Component {
             headers: { Authorization: `bearer ${token}` }
         }).then(response =>{
             this.props.setUser(response.data);
-            localStorage.setItem('favoriteMovies', response.data.favoriteMovies);
         }).catch(err=>{
             console.error(err);
         });
