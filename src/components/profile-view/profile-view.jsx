@@ -100,6 +100,7 @@ function ProfileView({ userInfo, onLogout, setUser }){
                 }
             }).then(response=>{
                 setUser(response.data);
+                localStorage.setItem('user', response.data.username);
             }).catch(err=>{
                 console.error(err);
                 alert('Username or email already in use');

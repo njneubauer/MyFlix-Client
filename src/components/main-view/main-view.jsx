@@ -17,6 +17,7 @@ import { NavBar } from '../common/navbar.jsx';
 // Boostrap and scss
 import { Row, Col } from 'react-bootstrap';
 import './main-view.scss';
+import { useRef } from 'react';
 
 class MainView extends React.Component {
 
@@ -46,8 +47,10 @@ class MainView extends React.Component {
     
     componentDidMount(){
         let accessToken = localStorage.getItem('token');
+        const username = localStorage.getItem('user');
         if(accessToken !== null){
             this.getMovies();
+            this.getUser(username);
         }
     }
 
@@ -56,6 +59,7 @@ class MainView extends React.Component {
         localStorage.setItem('token', authData.token);
         this.getMovies();
         this.getUser(authData.user.username);
+        localStorage.setItem('user', authData.user.username);
     }
 
     onLogout(){
@@ -73,7 +77,7 @@ class MainView extends React.Component {
                     <NavBar onLogout={ ()=> this.onLogout() } user={userInfo} />
                     <div id={`${bgClass}`}>
                     <Row id="row">
-                            <Route exact path="/" render={()=>{                                                        
+                            <Route exact path="/" render={()=>{ 
                                     if (!userInfo) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} />
                                                        
                                     if (movies.length === 0) return <div className="main-view" />;
@@ -90,7 +94,7 @@ class MainView extends React.Component {
                             <Route path="/profile" render={()=>{
                                 if (!userInfo) return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} /> 
                                 
-                                if (userInfo.length === 0) return <div className="main-view" />;
+                                if (movies.length === 0) return <div className="main-view" />;
 
                                 return <ProfileView onLogout={()=> this.onLogout()} />
                             }} />
